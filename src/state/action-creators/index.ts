@@ -117,3 +117,40 @@ export const courseDeleteFromUserFailAction: any= (course_name:string,user_id:st
         })
     }
 }
+
+
+
+export const courseDeleteRequestAction: any= (course_id : string) => {
+
+    return (dispatch: Dispatch<Action>) => {
+
+        dispatch({
+
+            type: courseActionType.COURSE_DELETE_REQUEST,
+
+            payload : {course_id}
+      })
+    }
+}
+
+export const courseDeleteSuccessAction: any= (dispatch: Dispatch<Action>) => {
+
+    //return (dispatch: Dispatch<Action>) => {
+
+        dispatch({
+
+            type: courseActionType.COURSE_DELETE_SUCCESS
+        })
+   // }
+}
+
+export const courseDeleteFailAction: any= () => {
+
+    return (dispatch: Dispatch<Action>) => {
+
+        dispatch({
+
+            type: courseActionType.COURSE_DELETE_FAIL
+        })
+    }
+}
