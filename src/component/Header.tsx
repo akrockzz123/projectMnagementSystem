@@ -6,7 +6,7 @@ import { useNavigation } from "react-router-dom";
 
 import { Userinformation } from "../models/model_type";
 
-import Form, { Container, Navbar } from 'react-bootstrap'
+import Form, { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
 
 import * as React from 'react';
@@ -18,9 +18,11 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
   return (
     <Navbar fixed = "top" bg = "dark" variant = "dark">
           <Container>
-            <Navbar.Brand>
+            <Navbar.Brand style = {{textAlign : 'center', margin: 'auto', fontSize : '30px'}}>
               Project Management system
             </Navbar.Brand>
+
+         
           </Container>
     </Navbar>
   );
