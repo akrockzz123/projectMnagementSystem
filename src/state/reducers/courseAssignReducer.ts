@@ -1,5 +1,7 @@
 
 
+//import { Action } from "redux"
+
 import { Action } from "../action"
 
 import { courseActionType } from "../action-types"
@@ -156,6 +158,27 @@ export const courseAssignReducer = (_state: courseState = initialState, action :
                 course_id_to_delete_loading: true,
 
                 course_id_to_delete_success: false,
+
+            }
+        break;
+
+        case courseActionType.COURSE_DELETE_SUCCESS:
+            return {
+                ..._state,
+
+                course_id_to_delete_loading: false,
+
+                course_id_to_delete_success: true
+            }
+        break;
+
+        case courseActionType.COURSE_DELETE_FAIL:
+            return {
+                ..._state,
+
+                course_id_to_delete_loading: false,
+                course_id_to_delete_success: false,
+                course_id_to_delete_error:true
 
             }
         break;
