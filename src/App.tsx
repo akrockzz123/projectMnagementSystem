@@ -12,6 +12,7 @@ import { Dispatch } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from './component/Header';
 import LoginScreen from './screen/LoginScreen';
+import { Container } from '@mui/material';
 
 function App() {
 
@@ -30,10 +31,11 @@ function App() {
   }
   
   return (
-    <>
+    <Container>
        <Header/>
+       
        <LoginScreen/>
-    </>
+    </Container>
   );
 }
 
