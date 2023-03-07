@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux';
 import Header from './component/Header';
 import LoginScreen from './screen/LoginScreen';
 import { Container } from '@mui/material';
+import { BrowserRouter as Router,Route,Routes, useRoutes} from 'react-router-dom';
+import SignupScreen from './screen/SignupScreen';
 
 function App() {
 
@@ -30,12 +32,22 @@ function App() {
     dispatch(userLoginRequestAction('aniketkumar1601@gmail.com', 'aniket1234'))
   }
   
+
+  let element = useRoutes([
+    {path: '/', element : <LoginScreen/>},
+    {path: '/signup', element: <SignupScreen/>}
+  ])
+
   return (
-    <Container>
+    <div>
+      <Header/>
+      <Container>
        <Header/>
+        {element}
        
-       <LoginScreen/>
     </Container>
+    </div>
+    
   );
 }
 

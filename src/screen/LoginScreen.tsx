@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
+import { useNavigate } from 'react-router-dom'
+
 import { userLoginRequestAction } from '../state/action-creators'
 type Props = {}
 
@@ -17,6 +19,9 @@ function LoginScreen({}: Props) {
     const [errorss,setErrorss] = useState(false)
 
     const dispatch = useDispatch()
+
+    const navigate = useNavigate()
+
 
     const emailFunc = (em : string) => {
 
@@ -43,6 +48,10 @@ function LoginScreen({}: Props) {
         setIsAdmin(!isAdmin)
     }
 
+    const signupHandler = () => {
+
+       navigate('/signup')
+    }
     const submitHandlerFunc = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
         e.preventDefault()
@@ -87,6 +96,9 @@ function LoginScreen({}: Props) {
       <br/>
       <br/>
       {errorss ? <div style = {{color : 'red'}}>Please enter email and password correctly</div> : <div></div>}
+
+      <Button variant = 'primary' onClick = {signupHandler}>SignUp</Button>
+    
     </Form>
   )
 }

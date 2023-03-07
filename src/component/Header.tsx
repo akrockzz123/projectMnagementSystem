@@ -19,7 +19,7 @@ const Header: React.FunctionComponent<IAppProps> = (props) => {
     <Navbar fixed = "top" bg = "dark" variant = "dark">
           <Container>
             <Navbar.Brand style = {{textAlign : 'center', margin: 'auto'}}>
-              Project Management system
+              Project Management system...........
             </Navbar.Brand>
 
          
