@@ -1,56 +1,70 @@
-import React from 'react';
-import { Card, Form, Input, Button, } from 'antd';
-// import { authenticateUser } from './loginSlice';
-// import { useAppDispatch } from '../../hooks';
-// import { isAuthenticated } from '../../services/authenticationService';
-import { useHistory } from 'react-router-dom';
 
+import React from "react";
+import "../style/login.css";
+import { useEffect, useState } from "react";
+import { useNavigation } from "react-router-dom";
 
-export function LoginPage() {
+import Form from 'react-bootstrap'
 
-    // const dispatch = useAppDispatch();
-    // let history = useHistory();
-    // if (isAuthenticated()) {
-    //   history.push('/v1');
-    // }
+const LoginScreen = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-    // const onFinish = (values: any) => {
-    //     dispatch(authenticateUser(values));
-    // };
+  //const navigation = useNavigation();
 
-    return (
-            <Card hoverable={true} title="Authentication" className="login-card">
-                <Form
-                    name="basic"
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    autoComplete="off"
-                >
-                    <Form.Item
-                        label="Email"
-                        name="username"
-                        rules={[{ required: true, message: 'Please input your email!' , type: 'email'} ]}
-                    >
-                        <Input />
-                    </Form.Item>
+  //   const handleSubmit = (event) => {
+  //     event.preventDefault();
+  //     setLoading(true);
+  //     setError("");
+  //     fetch("http://localhost:8080/api/auth/signin", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         username: username,
+  //         password: password,
+  //       }),
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         if (data.accessToken) {
+  //           setUser(data);
+  //           setLoading(false);
+  //           navigation.navigate("/home");
+  //         } else {
+  //           setError(data.message);
+  //           setLoading(false);
+  //         }
+  //       });
+  //   };
 
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[{ required: true, message: 'Please input your password!' }]}
-                    >
-                        <Input.Password />
-                    </Form.Item>
+  return (
+    <div className="form-container">
+      <div className="login__container">
+        <h1>Log in</h1>
+        <form>
+          <h5>Username</h5>
+          <input
+            type="text"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+          <h5>Password</h5>
+          <input
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <button type="submit" className="login__signInButton" onClick={alert}>
+            Log In
+          </button>
+        </form>
+        <p>{error}</p>
+      </div>
+    </div>
+  );
+};
 
-
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </Card>
-    )
-}
+export default LoginScreen;
