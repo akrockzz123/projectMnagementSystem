@@ -5,11 +5,12 @@
 import React, { useEffect } from 'react';
 
 import './App.css';
-import  LoginScreen from './screen/LoginScreen'
+//import  LoginScreen from './screen/LoginScreen'
 import { userLoginRequestAction } from './state/action-creators';
 
 import { Dispatch } from 'react';
 import { useDispatch } from 'react-redux';
+import Header from './component/Header';
 
 function App() {
 
@@ -28,12 +29,9 @@ function App() {
   }
   
   return (
-    <div className="App">
-      {/* <heyy How are you doinghhh> */}
-      <LoginScreen />
-
-      <button onClick = {func}>click me</button>
-    </div>
+    <>
+       <Header/>
+    </>
   );
 }
 
