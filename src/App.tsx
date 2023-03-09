@@ -13,8 +13,9 @@ import { useDispatch } from 'react-redux';
 import Header from './component/Header';
 import LoginScreen from './screen/LoginScreen';
 import { Container } from '@mui/material';
-import { BrowserRouter as Router,Route,Routes, useRoutes} from 'react-router-dom';
+import { BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import SignupScreen from './screen/SignupScreen';
+import HomeScreen from './screen/HomeScreen';
 
 function App() {
 
@@ -33,17 +34,17 @@ function App() {
   }
   
 
-  let element = useRoutes([
-    {path: '/', element : <LoginScreen/>},
-    {path: '/signup', element: <SignupScreen/>}
-  ])
+  
 
   return (
     <div>
       <Header/>
       <Container>
-       <Header/>
-        {element}
+       <Routes>
+        <Route path = '/' element = {<HomeScreen/>} />
+        <Route path = '/login' element = {<LoginScreen/>} />
+        <Route path = '/signup' element = {<SignupScreen/>} />
+       </Routes>
        
     </Container>
     </div>

@@ -2,8 +2,9 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-
 import { useNavigate } from 'react-router-dom'
+
+//import { useNavigate } from 'react-router-dom'
 
 import { userLoginRequestAction } from '../state/action-creators'
 type Props = {}
@@ -50,7 +51,7 @@ function LoginScreen({}: Props) {
 
     const signupHandler = () => {
 
-       navigate('/signup')
+      navigate('/signup')
     }
     const submitHandlerFunc = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
