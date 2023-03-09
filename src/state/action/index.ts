@@ -11,6 +11,9 @@ import { userActionType } from "../action-types"
 
 import { courseActionType } from "../action-types"
 
+//import { userSignupActionType } from "../action-types"
+
+
 type userinfo1 = {
 
     email : string
@@ -34,6 +37,12 @@ type userinfo = {
     //data : any
 
     
+}
+
+type userSignupInfo ={
+    fullName : string,
+    email : string ,
+    password : string
 }
 
 
@@ -162,6 +171,21 @@ interface usersListFail {
     payload?: any
 }
 
+//signup
+interface userSignupRequest {
+    type: userActionType.USER_SIGNUP_REQUEST
+    payload?: any
+}
+
+interface userSignupSuccess {
+    type: userActionType.USER_SIGNUP_SUCCESS
+    payload?: any
+}
+
+interface userSignupFail {
+    type: userActionType.USER_SIGNUP_FAIL
+    payload?: any
+}
 
 
 
@@ -169,7 +193,8 @@ interface usersListFail {
 
 
 
-export type Action = userLoginRequest | userLoginSuccess | userLoginFail | courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail
+
+export type Action = userLoginRequest | userLoginSuccess | userLoginFail | userSignupRequest|userSignupSuccess|userSignupFail|courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail
 
 
 
