@@ -154,3 +154,36 @@ export const courseDeleteFailAction: any= () => {
         })
     }
 }
+
+export const UsersListRequestAction : any = () => {
+
+    return (dispatch: Dispatch<Action>) => {
+
+        dispatch({
+
+            type: userActionType.USERS_LIST_REQUEST
+        })
+    }
+}
+
+export const UsersListSuccessAction : any = () => {
+
+    return (dispath : Dispatch<Action>) => {
+
+        dispath({
+
+            type: userActionType.USERS_LIST_SUCCESS
+        })
+    }
+}
+
+export const UsersListErrorAction : any = () => {
+
+    return (dispath : Dispatch<Action>) => {
+
+        dispath({
+
+            type: userActionType.USERS_LIST_FAIL
+        })
+    }
+}

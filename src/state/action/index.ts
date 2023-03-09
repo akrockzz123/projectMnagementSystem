@@ -141,12 +141,35 @@ interface courseDeleteFail {
     payload?: any
 }
 
+interface usersListRequest {
+
+    type: userActionType.USERS_LIST_REQUEST
+
+    payload?: any
+}
+
+interface usersListSuccess{
+
+    type: userActionType.USERS_LIST_SUCCESS
+
+    payload?: any
+}
+
+interface usersListFail {
+
+    type: userActionType.USERS_LIST_FAIL
+
+    payload?: any
+}
 
 
 
 
 
-export type Action = userLoginRequest | userLoginSuccess | userLoginFail | courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail
+
+
+
+export type Action = userLoginRequest | userLoginSuccess | userLoginFail | courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail
 
 
 
