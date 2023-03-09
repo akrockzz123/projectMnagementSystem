@@ -17,6 +17,7 @@ import { Container } from '@mui/material';
 import { BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import SignupScreen from './screen/SignupScreen';
 import HomeScreen from './screen/HomeScreen';
+import ListAllUsersScreen from './screen/ListAllUsersScreen';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
         <Route path = '/' element = {<HomeScreen/>} />
         <Route path = '/login' element = {<LoginScreen/>} />
         <Route path = '/signup' element = {<SignupScreen/>} />
+        <Route path = '/users' element = {<ListAllUsersScreen/>} />
        </Routes>
        
 =======

@@ -15,7 +15,14 @@ type userstate = {
 
     success: boolean,
 
-    error: {}
+    error: {},
+    users : [],
+
+    usersLoading : boolean,
+
+    successUsers : boolean,
+
+    errorusers : boolean
 }
 
 const initialState : userstate = {
@@ -28,7 +35,40 @@ const initialState : userstate = {
 
     success: false,
 
-    error: {}
+    error: {},
+
+    users : [],
+
+    usersLoading : true,
+
+    successUsers : false,
+
+    errorusers : false
+
+
+}
+
+type usersState = {
+
+    users : [],
+
+    usersLoading : boolean,
+
+    successUsers : boolean,
+
+    errorusers : boolean
+}
+
+const initialState2 : usersState = {
+
+    users : [],
+
+    usersLoading : true,
+
+    successUsers : false,
+
+    errorusers : false
+
 }
 
 
@@ -72,7 +112,66 @@ export const userLoginReducers = (_state: userstate = initialState, action : Act
             }
         break;
 
+        case userActionType.USERS_LIST_REQUEST :
+            return {
+                usersLoading : true
+            }
+        break;
+        case userActionType.USERS_LIST_SUCCESS :
+            return {
+
+                usersLoading : false,
+
+                users : action.payload,
+
+                successUsers : true
+            }
+        break;
+
+        case userActionType.USERS_LIST_FAIL :
+            return {
+                
+                errorusers : true
+            }
+        break;
+
+        default: 
+        return initialState
+
+       
         
 
     }
 }
+
+
+/*export const usersListReducer = (_state : usersState = initialState2,action : Action) => {
+
+    switch(action.type) {
+
+        case userActionType.USERS_LIST_REQUEST :
+            return {
+                usersLoading : true
+            }
+        break;
+        case userActionType.USERS_LIST_SUCCESS :
+            return {
+
+                usersLoading : false,
+
+                users : action.payload,
+
+                successUsers : true
+            }
+        break;
+
+        case userActionType.USERS_LIST_FAIL :
+            return {
+                
+                errorusers : true
+            }
+        break;
+
+        
+    }
+}*/

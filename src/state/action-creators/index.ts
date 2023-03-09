@@ -2,7 +2,7 @@ import { Dispatch } from "react"
 import { Action } from "../action"
 
 
-import { courseActionType, userActionType } from "../action-types"
+import { courseActionType, userActionType} from "../action-types"
 
 export const userLoginRequestAction: any= (email : string, password: string) => {
 
@@ -154,3 +154,70 @@ export const courseDeleteFailAction: any= () => {
         })
     }
 }
+
+export const UsersListRequestAction : any = () => {
+
+    return (dispatch: Dispatch<Action>) => {
+
+        dispatch({
+
+            type: userActionType.USERS_LIST_REQUEST
+        })
+    }
+}
+
+export const UsersListSuccessAction : any = () => {
+
+    return (dispath : Dispatch<Action>) => {
+
+        dispath({
+
+            type: userActionType.USERS_LIST_SUCCESS
+        })
+    }
+}
+
+export const UsersListErrorAction : any = () => {
+
+    return (dispath : Dispatch<Action>) => {
+
+        dispath({
+
+            type: userActionType.USERS_LIST_FAIL
+        })
+    }
+}
+
+//signup
+export const userSignupRequestAction: any= (fullName : string, email : string, password: string) => {
+    return (dispatch: Dispatch<Action>) => {
+
+        dispatch({
+
+            type: userActionType.USER_SIGNUP_REQUEST,
+            payload : {
+                fullName : fullName, 
+                email : email, 
+                password: password
+            }
+      })
+    }
+}
+
+export const userSignupSuccessAction: any= (dispatch: Dispatch<Action>) => {
+    //return (dispatch: Dispatch<Action>) => {
+        dispatch({
+
+            type: userActionType.USER_SIGNUP_SUCCESS
+        })
+    }
+
+
+export const userSignupFailAction: any= () => {
+    return (dispatch: Dispatch<Action>) => {
+        dispatch({
+                
+                type: userActionType.USER_SIGNUP_FAIL
+            })
+        }
+    }
