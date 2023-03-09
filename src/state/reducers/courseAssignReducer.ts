@@ -183,6 +183,9 @@ export const courseAssignReducer = (_state: courseState = initialState, action :
             }
         break;
 
+        default : 
+        return initialState
+
 
     }
 

@@ -135,6 +135,9 @@ export const userLoginReducers = (_state: userstate = initialState, action : Act
             }
         break;
 
+        default: 
+        return initialState
+
        
         
 
