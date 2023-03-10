@@ -74,14 +74,14 @@ function* workcourseSaga(action: Action) : any{
         const result = yield call(AssignCourseToUser,action.payload.course_name,action.payload.userAssignId);
 
 
-        yield put(userLoginSuccessAction())
+        yield put(userLoginSuccessAction)
 
     
 
     }
     catch(err) {
 
-        yield put(userLoginFailAction())
+        yield put(userLoginFailAction)
     }
 }
  function* watchcourseSaga():any {

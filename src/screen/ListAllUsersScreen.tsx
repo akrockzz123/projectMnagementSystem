@@ -1,6 +1,6 @@
 
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
@@ -9,8 +9,34 @@ import Message from '../component/Message'
 
 import { useAppSelector } from '../Types'
 
+import { useDispatch } from 'react-redux'
+import { UsersListRequestAction } from '../state/action-creators'
+
+import { useNavigate } from 'react-router-dom'
+
+import Loading from '../component/Loading'
+
+const AssignHandler = (userid : string,navigate : any) => {
+
+  console.log("AssignHandler function", userid)
+  
+
+  navigate(`/users/${userid}`)
+}
+
 type Props = {}
 
+type usercheck = {
+  user_id : string,
+  userName : string,
+  email : string,
+
+  role : string,
+
+  status: string,
+
+  Projects: null
+}
 type usersTypesInfo = {
 
   email: string,
@@ -22,7 +48,7 @@ type usersTypesInfo = {
   success: boolean,
 
   error: {},
-  users : [],
+  users : [usercheck],
 
   usersLoading : boolean,
 
@@ -31,7 +57,12 @@ type usersTypesInfo = {
   errorusers : boolean
 }
 
+
+
 function ListAllUsersScreen({}: Props) {
+
+
+  const navigate = useNavigate()
 
   /*users : [],
 
@@ -42,12 +73,23 @@ function ListAllUsersScreen({}: Props) {
   errorusers : <false></false>
   */
 
+  const dispatch = useDispatch()
+
+
+
+  useEffect(() => {
+
+    dispatch(UsersListRequestAction())
+  },[])
+
   const usersStates : usersTypesInfo  = useAppSelector(state => state.usersReducer)
+
 
   
 
   const {users,usersLoading ,successUsers,errorusers} = usersStates
 
+  console.log("check",users,usersLoading)
   /*users : [],
 
     usersLoading : boolean,
@@ -55,29 +97,43 @@ function ListAllUsersScreen({}: Props) {
     successUsers : boolean,
 
     errorusers : boolean*/
+//var ts : string = typeof(users).toString()
 
   return (
     
+   
     <>
+    <br/>
+    <br/>
+
     <h1>Users</h1>
-    {usersLoading ? <h1>Loading...</h1> : errorusers ? <div>Error</div>: (
-
-      <Table striped bordered hover responsive className='table-sm'>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>ADMIN</th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
+    {usersLoading ? <Loading/> : successUsers ? <><Table  striped bordered hover responsive className='table-sm'>
+      <thead>
+        <tr>
           
-        </tbody>
-      </Table>
-    )}
+          <th>user_id</th>
+          <th>user Name</th>
+          <th>email</th>
+          <th>Role</th>
+          <th>Assign Project</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          {users.map(u => 
+            <tr key = {u.user_id}>
+              <td>{u.user_id}</td>
+              <td>{u.userName}</td>
+              <td>{u.email}</td>
+              <td>{u.role}</td>
+              <td ><Button variant='primary' onClick = { () => AssignHandler(u.user_id,navigate)}>Assign</Button> </td>
+            </tr>
+          )}
+        
+       
+        
+      </tbody>
+    </Table></> : <h1>Error</h1> }
   </>
     
   )

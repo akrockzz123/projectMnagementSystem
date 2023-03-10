@@ -1,0 +1,43 @@
+-> /user/users - GET
+    -> Fetches all Active Users 
+-> /user/all - GET 
+    -> Get all active and Inactive Users 
+-> /user/inactive - GET
+    -> Get all inactive users
+-> /user/:user_id - GET 
+    -> user details of user_id
+-> /user/add - POST 
+    -> Add User
+        -> BODY{
+            "name":name,
+            "email":email,
+            "role":role,
+            "status":status 
+        } status default is "Active"
+-> /user/projects/:project_id - GET 
+    -> Get all users working on project with project id
+-> /user/remove/:user_id - POST
+    -> Delete the User with user_id
+
+
+-> /project/projects - GET 
+    -> Fetch all Active projects 
+-> /project/all - GET 
+    -> Get all Active and Inactive Projects 
+-> /project/inactie - GET 
+    -> Get all Inactive projects
+-> /project/add - POST 
+    -> Add Project
+-> /project/userp/:user_id - GET 
+    -> Get all projects of user id 
+-> /project/remove/:project_id - POST
+    -> Remove Project having project_id
+-> /project/:project_id - GET 
+    -> Get details of specific Project
+-> /assign/project - POST 
+    -> Assign a project to user 
+        -> BODY  - {
+            "user_id":user_id,
+            "project_id":project_id
+        }
+-> /project/

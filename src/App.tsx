@@ -17,6 +17,8 @@ import { Container } from '@mui/material';
 import { BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import SignupScreen from './screen/SignupScreen';
 import ListAllUsersScreen from './screen/ListAllUsersScreen';
+import AddUserScreen from './screen/AddUserScreen';
+import ShowProjectOfUser from './screen/ShowNotAssignedProjectOfUser';
 
 function App() {
 
@@ -46,6 +48,11 @@ function App() {
         <Route path = '/login' element = {<LoginScreen/>} />
         <Route path = '/signup' element = {<SignupScreen/>} />
         <Route path = '/users' element = {<ListAllUsersScreen/>} />
+
+        <Route path = '/users/:id' element = {<ShowProjectOfUser/>} />
+        <Route path = '/users/add' element = {<AddUserScreen/>} />
+        
+       
        </Routes>
        </Container>
     </div>
