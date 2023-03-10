@@ -188,13 +188,49 @@ interface userSignupFail {
 }
 
 
+// GET PROJECTS OF USER action
+
+interface getProjectsofUserRequest {
+    type: userActionType.USER_SIGNUP_REQUEST
+    payload?: any
+}
+
+interface getProjectsofUserSuccess {
+    type: userActionType.USER_SIGNUP_SUCCESS
+    payload?: any
+}
+
+interface getProjectsofUserFail {
+    type: userActionType.USER_SIGNUP_FAIL
+    payload?: any
+}
+
+interface getALLNotAssignedRequest {
+
+    type : courseActionType.COURSE_NOT_ASSIGN_REQUEST,
+
+    payload?: any
+}
+
+interface getAllNotAssignedSuccess {
+
+    type : courseActionType.COURSE_NOT_ASSIGN_SUCCESS,
+
+    payload?: any
+}
+
+interface getAllNotAssignedFail {
+
+    type : courseActionType.COURSE_NOT_ASSIGN_FAIL,
+
+    payload?: any
+}
 
 
 
 
 
-
-export type Action = userLoginRequest | userLoginSuccess | userLoginFail | userSignupRequest|userSignupSuccess|userSignupFail|courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail
+export type Action = userLoginRequest | userLoginSuccess | userLoginFail | userSignupRequest|userSignupSuccess|userSignupFail|courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail | getProjectsofUserRequest | getProjectsofUserSuccess | getProjectsofUserFail | getALLNotAssignedRequest | getAllNotAssignedSuccess | getAllNotAssignedFail
 
 
 

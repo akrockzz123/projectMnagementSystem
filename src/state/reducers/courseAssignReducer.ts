@@ -35,26 +35,33 @@ type courseState = {
     loading_delete_from_user: boolean,
 
 
-    error_delete_from_user: {}
+    error_delete_from_user: {},
+
+    course_not_assign : [],
+
+    course_not_assign_loading : boolean,
+
+    course_not_assign_success : boolean,
+
+    course_not_assign_error : {}
 }
 
 const initialState : courseState = {
+    course_id: '',
 
-    course_id : '',
+    course_name: '',
 
-    course_name : '',
+    success: false,
 
-    success : false,
 
-    
 
     loading: true,
 
-    error : null,
+    error: null,
 
     course_id_to_delete: '',
 
-   
+
 
     course_id_to_delete_success: false,
 
@@ -69,7 +76,14 @@ const initialState : courseState = {
     loading_delete_from_user: true,
 
 
-    error_delete_from_user: {}
+    error_delete_from_user: {},
+
+    course_not_assign_loading: true,
+
+    course_not_assign_success: false,
+
+    course_not_assign_error: false,
+    course_not_assign: []
 }
 
 
@@ -180,6 +194,38 @@ export const courseAssignReducer = (_state: courseState = initialState, action :
                 course_id_to_delete_success: false,
                 course_id_to_delete_error:true
 
+            }
+        break;
+
+        case courseActionType.COURSE_NOT_ASSIGN_REQUEST :
+            return {
+                ..._state,
+
+                course_not_assign_loading: true
+            }
+
+        break;
+
+        case courseActionType.COURSE_NOT_ASSIGN_SUCCESS :
+            return {
+
+                ..._state,
+
+                course_not_assign_loading: false,
+
+                course_not_assign_success : true,
+
+                course_not_assign : action.payload
+            }
+        break;
+
+        case courseActionType.COURSE_NOT_ASSIGN_FAIL :
+            return {
+                ..._state,
+
+                course_not_assign_loading: false,
+
+                course_not_assign_error : true
             }
         break;
 

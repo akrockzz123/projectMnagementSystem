@@ -36,9 +36,9 @@ const fetchUserList  = async () => {
             },
         }
     
-        //const { data } = await axios.post('/api/users/login',{email,password},config)
+        const { data } = await axios.get('http://localhost:8080/user/all')
 
-        return 'userListRequest action called'
+        return data
 
     } catch (err) {
         
@@ -80,7 +80,7 @@ function* workListUserSaga(action: Action) : any{
 
         // way of calling action from work saga
         
-        yield put(UsersListSuccessAction)
+        yield put(UsersListSuccessAction(result))
 
     
 

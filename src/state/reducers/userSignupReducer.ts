@@ -3,7 +3,7 @@ import { userActionType } from "../action-types"
 
 type userstate = {
 
-    fullName: string,
+    username: string,
 
     email: string,
 
@@ -13,12 +13,13 @@ type userstate = {
 
     success: boolean,
 
+    role : string,
     error: {}
 }
 
 const initialState : userstate = {
 
-    fullName: "",
+    username: "",
 
     email: "",
 
@@ -27,6 +28,8 @@ const initialState : userstate = {
     loading: true,
 
     success: false,
+
+    role : "",
 
     error: {}
 }
@@ -40,13 +43,17 @@ export const userSignupReducers = (_state: userstate = initialState, action : Ac
 
                 ..._state,
                 
-                fullName : action.payload.fullName,
+                username : action.payload.userame,
 
                 email : action.payload.email,
 
                 password: action.payload.password,
                 
-                loading: true
+                loading: true,
+
+                role : action.payload.role
+
+
             }
 
         break;
@@ -56,7 +63,8 @@ export const userSignupReducers = (_state: userstate = initialState, action : Ac
 
                 ..._state,
                 loading: false,
-                success: true
+                success: true,
+                
                 
             }
 

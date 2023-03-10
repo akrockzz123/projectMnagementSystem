@@ -166,13 +166,15 @@ export const UsersListRequestAction : any = () => {
     }
 }
 
-export const UsersListSuccessAction : any = () => {
+export const UsersListSuccessAction : any = (users : []) => {
 
     return (dispath : Dispatch<Action>) => {
 
         dispath({
 
-            type: userActionType.USERS_LIST_SUCCESS
+            type: userActionType.USERS_LIST_SUCCESS,
+
+            payload : users
         })
     }
 }
@@ -189,16 +191,17 @@ export const UsersListErrorAction : any = () => {
 }
 
 //signup
-export const userSignupRequestAction: any= (fullName : string, email : string, password: string) => {
+export const userSignupRequestAction: any= (username : string, email : string, password: string, role : string) => {
     return (dispatch: Dispatch<Action>) => {
 
         dispatch({
 
             type: userActionType.USER_SIGNUP_REQUEST,
             payload : {
-                fullName : fullName, 
+                username : username, 
                 email : email, 
-                password: password
+                password: password,
+                role : role
             }
       })
     }
@@ -221,3 +224,42 @@ export const userSignupFailAction: any= () => {
             })
         }
     }
+
+
+    export const NotActiveProjectRequest : any = () => {
+        return (dispatch: Dispatch<Action>) => {
+            dispatch({
+                    
+                    type: courseActionType.COURSE_NOT_ASSIGN_REQUEST
+                })
+            }
+        }
+
+        export const NotActiveProjectSuccess : any = (notactiveprojects : []) => {
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: courseActionType.COURSE_NOT_ASSIGN_REQUEST,
+
+                        payload : notactiveprojects
+                    })
+                }
+            }
+
+            
+        export const NotActiveProjectFail : any = () => {
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: courseActionType.COURSE_NOT_ASSIGN_FAIL
+                    })
+                }
+            }
+
+
+    // get projects of user 
+
+
+   
+
+
