@@ -3,6 +3,10 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { AssignProjectRequest, courseAddRequestAction } from '../state/action-creators';
+import { courseAddReducer } from '../state/reducers/courseAddReducer';
+import { useAppSelector } from '../Types';
 
 interface IAppProps {
 }
@@ -17,6 +21,20 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
 
     const [assigneeid,setAssigneeid] = useState('')
 
+    const dispatch = useDispatch()
+
+    type addProjectState = {
+
+        loadingAddCourse : boolean,
+    
+        errorAddCourse : boolean,
+    
+        successAddCourse : boolean
+    }
+
+    const addProject : addProjectState = useAppSelector(state => state.courseAddReducer)
+
+    const {loadingAddCourse, errorAddCourse,successAddCourse} = addProject
 
     const nameFunc = (name : string) => {
 
@@ -26,12 +44,13 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
 
     const assigneeFunc = (assign : string) => {
 
-        setAssigneeid(assign)
+        setAssigneeid(AssignProjectRequest)
     }
 
     const submitHandlerFunc = () => {
 
-        
+        dispatch(courseAddRequestAction(name,assigneeid))
+
     }
 
   return (
@@ -61,7 +80,9 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
     
     <br/>
     <br/>
-    {errorss ? <div style = {{color : 'red'}}>Please enter email and password correctly</div> : <div></div>}
+    {errorAddCourse ? <div style = {{color : 'red'}}>Please enter course and assignee id correctly</div> : <div></div>}
+
+
   
   </Form>
   );

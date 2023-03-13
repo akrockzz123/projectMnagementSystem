@@ -17,23 +17,23 @@ type User struct {
 
 	Name string `orm:"column(name)"`
 	//Password string `orm:"column(password)"`
-	Role string `orm:"column(is_admin)"`
+	Role string `orm:"column(role)"`
 }
 
 type userPayload struct {
-	UserName string `json:"username"`
+	UserName string `orm:"username"`
 }
 
 func Login(c *gin.Context) {
-	var input struct {
-		UserName string `json:"userName" binding:"required"`
-		//Password string `json:"password" binding:"required"`
-	}
+	// var input struct {
+	// 	UserName string `json:"userName" binding:"required"`
+	// 	//Password string `json:"password" binding:"required"`
+	// }
 
-	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
+	// if err := c.ShouldBindJSON(&input); err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	// 	return
+	// }
 
 	body, err := ioutil.ReadAll(c.Request.Body)
 
@@ -49,12 +49,12 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, "Failed to Unmarshal")
 		return
 	}
-	var user User
+	var userss User
 
 	o := orm.NewOrm()
 
-	fmt.Println(dummy.UserName)
-	err1 := o.QueryTable("users").Filter("userName", dummy.UserName).One(&user)
+	fmt.Println(dummy.UserName, "heyyyyy")
+	err1 := o.QueryTable("user").Filter("username", dummy.UserName).One(&userss)
 
 	if err1 != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid userName or password"})
@@ -66,14 +66,14 @@ func Login(c *gin.Context) {
 	// 	return
 	// }
 
-	if user.Role == "Admin" || user.Role == "admin" {
-		c.JSON(http.StatusOK, gin.H{"message": "Welcome admin!"})
-		return
-	}
+	// if User.Role == "Admin" || User.Role == "admin" {
+	// 	c.JSON(http.StatusOK, gin.H{"message": "Welcome admin!"})
+	// 	return
+	// }
 
-	c.JSON(http.StatusOK, gin.H{
-		"message":  "Welcome user!",
-		"userName": user.Name,
-		"userId":   user.ID,
-	})
+	// c.JSON(http.StatusOK, gin.H{
+	// 	"message":  "Welcome user!",
+	// 	"userName": user.Name,
+	// 	"userId":   user.ID,
+	// })
 }

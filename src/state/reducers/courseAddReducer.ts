@@ -32,7 +32,7 @@ const initialState : addProjectState = {
 
 
 
-export const courseAssignReducer = (_state: addProjectState = initialState, action : Action) => {
+export const courseAddReducer = (_state: addProjectState = initialState, action : Action) => {
 
     switch(action.type)
     {

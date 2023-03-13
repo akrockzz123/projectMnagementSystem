@@ -291,6 +291,39 @@ export const userSignupFailAction: any= () => {
                 }
 
         }
+
+        export const courseAddRequestAction : any = (name : string,assignee_id : string) => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: courseActionType.ADD_PROJECT_REQUEST,
+
+                        payload : {name, assignee_id}
+                    })
+                }
+        }
+
+        export const courseAddRequestSuccess : any = () => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: courseActionType.ADD_PROJECT_SUCCESS
+                    })
+                }
+        }
+
+        
+        export const courseAddRequestFail : any = () => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: courseActionType.ADD_PROJECT_FAIL
+                    })
+                }
+        }
         
         
 

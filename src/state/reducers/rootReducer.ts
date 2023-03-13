@@ -8,6 +8,7 @@ import { userSignupReducers } from './userSignupReducer'
 //import { usersListReducer } from './userLoginReducer'
 
 import { courseNotAssignReducer } from './courseNotAssignReducer'
+import { courseAddReducer } from './courseAddReducer'
 
 export const reducer = combineReducers({
 
@@ -16,6 +17,8 @@ export const reducer = combineReducers({
     courseNotAssignReducer : courseNotAssignReducer,
     usersReducer : userLoginReducers,
 
-    userSignup: userSignupReducers
+    userSignup: userSignupReducers,
+
+    courseAddReducer : courseAddReducer
 
 })
