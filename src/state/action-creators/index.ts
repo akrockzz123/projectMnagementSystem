@@ -239,7 +239,7 @@ export const userSignupFailAction: any= () => {
             return (dispatch: Dispatch<Action>) => {
                 dispatch({
                         
-                        type: courseActionType.COURSE_NOT_ASSIGN_REQUEST,
+                        type: courseActionType.COURSE_NOT_ASSIGN_SUCCESS,
 
                         payload : notactiveprojects
                     })
@@ -255,6 +255,44 @@ export const userSignupFailAction: any= () => {
                     })
                 }
             }
+
+        // project assign reducers
+            
+        export const AssignProjectRequest : any = (userid : string,courseid : string) => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.ASSIGN_PROJECT_REQUEST,
+
+                        payload : {userid,courseid}
+                    })
+                }
+        }
+
+        export const AssignProjectRequestFail : any = () => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.ASSIGN_PROJECT_FAIL
+                    })
+                }
+
+        }
+
+        export const AssignProjectRequestSuccess : any = () => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.ASSIGN_PROJECT_SUCCESS
+                    })
+                }
+
+        }
+        
+        
 
 
     // get projects of user 

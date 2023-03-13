@@ -16,16 +16,16 @@ import { courseActionType, userActionType } from '../state/action-types';
 import axios from 'axios';
 import { Action } from '../state/action';
 
-import { userLoginRequestAction } from '../state/action-creators';
+import { AssignProjectRequestFail, AssignProjectRequestSuccess, userLoginRequestAction } from '../state/action-creators';
 
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
 
 
-const AssignCourseToUser  = async (course_name: string,userAssignId: string) => {
+const AssignCourseToUser  = async (courseid: string,userAssignId: string) => {
 
-
+   
     try {
         
         const config = {
@@ -33,10 +33,19 @@ const AssignCourseToUser  = async (course_name: string,userAssignId: string) => 
                 'Content-Type': 'application/json'
             },
         }
-    
-        //const { data } = await axios.post('/api/users/login',{email,password},config)
 
-        return 'aniket'
+        const user_id = parseInt(userAssignId)
+
+        const project_id = courseid
+
+        console.log(user_id,project_id,"jbvsj",typeof(courseid))
+
+        console.log("called in work before api")
+        const data  = await axios.post('/assign/project',{user_id,project_id},config)
+
+        console.log("called in work after api call ")
+
+        return data
 
     } catch (err) {
         
@@ -66,27 +75,28 @@ const AssignCourseToUser  = async (course_name: string,userAssignId: string) => 
 function* workcourseSaga(action: Action) : any{
 
     //yield takeEvery
-
+    console.log(action.payload.courseid,action.payload.userid,"watch course saga")
 
     try {
 
-        //action.payload.email
-        const result = yield call(AssignCourseToUser,action.payload.course_name,action.payload.userAssignId);
+        console.log(action.payload.courseid,action.payload.userid,"watch course saga")
+        const result = yield call(AssignCourseToUser,action.payload.courseid,action.payload.userid);
 
-
-        yield put(userLoginSuccessAction)
+        console.log(result,"hey hottie")
+        yield put(AssignProjectRequestSuccess)
 
     
 
     }
     catch(err) {
 
-        yield put(userLoginFailAction)
+        yield put(AssignProjectRequestFail)
     }
 }
  function* watchcourseSaga():any {
 
-    yield takeEvery(courseActionType.COURSE_ASSIGN_REQUEST,watchcourseSaga);
+    console.log("watch course saga")
+    yield takeEvery(userActionType.ASSIGN_PROJECT_REQUEST,workcourseSaga);
 
     //yield call(handleLoginAction);
 

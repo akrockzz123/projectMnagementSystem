@@ -14,7 +14,7 @@ import (
 type ProjectPayload struct {
 	Name        string `json:"name"`
 	Assignee_id string `json:"assignee_id"`
-    Status string `json:"status"`
+	Status      string `json:"status"`
 }
 
 func GetAllProjects(c *gin.Context) {
@@ -39,14 +39,16 @@ func AddProject(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, "Failed to Unmarshal")
 		return
 	}
-    if dummy.Status == ""{
-        dummy.Status = "Active"
-    }
+
+	dummy.Status = "Inactive"
+
 	nproject := model.Project{
 		Name:        dummy.Name,
 		Assignee_id: dummy.Assignee_id,
-        Status: dummy.Status,
+		Status:      dummy.Status,
 	}
+
+	//int2, err := strconv.ParseInt(dummy.Assignee_id, 6, 12)
 	id, err := model.AddProject(&nproject)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)
@@ -54,51 +56,51 @@ func AddProject(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"id": id})
 }
-func GetSpecificProject(c *gin.Context){
-    const functionName = "controllers.GetSpecificProject"
-    idp := c.Param("project_id")
-    id, err := strconv.Atoi(idp)
-    if err != nil{
-        c.JSON(http.StatusNotFound,gin.H{"Error":"Invalid ID"})
-        return
-    }
-    p,err := model.GetSpecificProject(id)
-    if err != nil{
-        c.JSON(http.StatusNotFound,"Query Error")
-        return
-    }
-    c.JSON(http.StatusOK,p)
+func GetSpecificProject(c *gin.Context) {
+	const functionName = "controllers.GetSpecificProject"
+	idp := c.Param("project_id")
+	id, err := strconv.Atoi(idp)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"Error": "Invalid ID"})
+		return
+	}
+	p, err := model.GetSpecificProject(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, "Query Error")
+		return
+	}
+	c.JSON(http.StatusOK, p)
 
 }
-func GetAllActiveProjects(c *gin.Context){
-    p,err := model.GetAllProjects("Active")
-    if err != nil{
-        c.JSON(http.StatusNotFound,gin.H{"msg":"Error Getting Active Projects"})
-        return
-    }
-    c.JSON(http.StatusOK,p)
+func GetAllActiveProjects(c *gin.Context) {
+	p, err := model.GetAllProjects("Active")
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"msg": "Error Getting Active Projects"})
+		return
+	}
+	c.JSON(http.StatusOK, p)
 }
-func GetAllInactiveProjects(c *gin.Context){
-    p,err := model.GetAllProjects("Inactive")
-    if err != nil{
-        c.JSON(http.StatusNotFound,gin.H{"msg":"Error Getting Active Projects"})
-        return
-    }
-    c.JSON(http.StatusOK,p)
+func GetAllInactiveProjects(c *gin.Context) {
+	p, err := model.GetAllProjects("Inactive")
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"msg": "Error Getting Active Projects"})
+		return
+	}
+	c.JSON(http.StatusOK, p)
 }
-func RemoveProject(c *gin.Context){
-    const functionName = "controllers.RemoveProject"
-    idp := c.Param("project_id")
-    id, err := strconv.Atoi(idp)
-    if err != nil{
-        c.JSON(http.StatusNotFound,gin.H{"Error":"Invalid ID"})
-        return
-    }
-    err = model.RemoveProject(id)
-    if err != nil{
-        c.JSON(http.StatusNotFound,"Query Error")
-        return
-    }
-    c.JSON(http.StatusOK,gin.H{"msg":"Removed Successfully"})
+func RemoveProject(c *gin.Context) {
+	const functionName = "controllers.RemoveProject"
+	idp := c.Param("project_id")
+	id, err := strconv.Atoi(idp)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"Error": "Invalid ID"})
+		return
+	}
+	err = model.RemoveProject(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, "Query Error")
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"msg": "Removed Successfully"})
 
 }

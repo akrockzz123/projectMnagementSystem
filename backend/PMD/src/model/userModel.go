@@ -2,6 +2,7 @@ package model
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/beego/beego/orm"
 )
@@ -66,6 +67,29 @@ func GetUserProjects(u int) (uo []User, err error) {
 }
 func DeleteUser(id int) error {
 	o := orm.NewOrm()
+
 	_, err := o.QueryTable(new(User)).Filter("user_id", id).Update(orm.Params{"status": "Inactive"})
 	return err
+}
+
+func UpdateUser(id int) error {
+
+	o := orm.NewOrm()
+
+	val, err := o.QueryTable(new(User)).Filter("user_id", id).Update(orm.Params{"role": "Admin"})
+
+	fmt.Println(val)
+
+	return err
+
+}
+
+func UpdateUserEmail(id int, emails string) error {
+
+	o := orm.NewOrm()
+
+	_, err := o.QueryTable(new(User)).Filter("user_id", id).Update(orm.Params{"email": emails})
+
+	return err
+
 }

@@ -95,4 +95,4 @@ function* worknotassignedcourseSaga(action: Action) : any{
 
 }
 
-export const watchnotassigned = watchnotassignedcourseSaga;
+export const coursenotassignedSaga = watchnotassignedcourseSaga;

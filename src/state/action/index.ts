@@ -226,11 +226,49 @@ interface getAllNotAssignedFail {
     payload?: any
 }
 
+interface assignProjectToUserRequest {
+
+    type : userActionType.ASSIGN_PROJECT_REQUEST,
+
+    payload?: any
+}
+
+interface assignProjectToUserSuccess {
+
+    type : userActionType.ASSIGN_PROJECT_SUCCESS,
+
+    payload?: any
+}
+
+interface assignProjectToUserFail {
+
+    type : userActionType.ASSIGN_PROJECT_FAIL,
+    payload?: any
+}
+
+interface addProjectRequest {
+
+    type : courseActionType.ADD_PROJECT_REQUEST,
+    payload?: any
+
+}
+
+interface addProjectSuccess {
+
+    type : courseActionType.ADD_PROJECT_SUCCESS,
+    payload?: any
+}
+
+interface addProjectFail {
+
+    type : courseActionType.ADD_PROJECT_FAIL,
+    payload?: any
+}
 
 
 
 
-export type Action = userLoginRequest | userLoginSuccess | userLoginFail | userSignupRequest|userSignupSuccess|userSignupFail|courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail | getProjectsofUserRequest | getProjectsofUserSuccess | getProjectsofUserFail | getALLNotAssignedRequest | getAllNotAssignedSuccess | getAllNotAssignedFail
+export type Action = userLoginRequest | userLoginSuccess | userLoginFail | userSignupRequest|userSignupSuccess|userSignupFail|courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail | getProjectsofUserRequest | getProjectsofUserSuccess | getProjectsofUserFail | getALLNotAssignedRequest | getAllNotAssignedSuccess | getAllNotAssignedFail | assignProjectToUserFail | assignProjectToUserRequest | assignProjectToUserSuccess | addProjectRequest | addProjectSuccess | addProjectFail
 
 
 
