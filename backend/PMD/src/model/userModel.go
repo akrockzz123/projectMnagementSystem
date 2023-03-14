@@ -14,6 +14,7 @@ type User struct {
 	Role     string     `orm:"column(role)" json:"role"`
 	Status   string     `orm:"column(status)" json:"status"`
 	Projects []*Project `orm:"rel(m2m)"`
+	Password string     `orm:"column(password)" json:"password"`
 }
 
 func init() {

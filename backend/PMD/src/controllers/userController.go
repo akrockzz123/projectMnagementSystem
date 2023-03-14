@@ -53,6 +53,38 @@ func GetUserById(c *gin.Context) {
 	c.JSON(http.StatusOK, u)
 }
 
+// func Adduser(c *gin.Context) {
+// 	const funnctionName = "controllers.Adduser"
+// 	body, err := ioutil.ReadAll(c.Request.Body)
+// 	if err != nil && err != io.EOF {
+// 		c.JSON(http.StatusInternalServerError, "Internal Server Error")
+// 		return
+// 	}
+// 	var dummy UserPayload
+// 	err = json.Unmarshal(body, &dummy)
+// 	if err != nil {
+// 		c.JSON(http.StatusInternalServerError, "Failed to Unmarshal")
+// 		return
+// 	}
+// 	var nuser model.User
+
+// 	dummy.Status = "Inactive"
+
+// 	nuser = model.User{
+// 		Username: dummy.Name,
+// 		Email:    dummy.Email,
+// 		Role:     dummy.Role,
+// 		Status:   dummy.Status,
+// 		Password: dummy.Password,
+// 	}
+// 	id, err := model.AddUser(&nuser)
+// 	if err != nil {
+// 		c.JSON(http.StatusInternalServerError, "Failed to Add")
+// 		return
+// 	}
+// 	c.JSON(http.StatusOK, gin.H{"id": id})
+// }
+
 func Adduser(c *gin.Context) {
 	const funnctionName = "controllers.Adduser"
 	body, err := ioutil.ReadAll(c.Request.Body)
@@ -68,13 +100,14 @@ func Adduser(c *gin.Context) {
 	}
 	var nuser model.User
 	if dummy.Status == "" {
-		dummy.Status = "Active"
+		dummy.Status = "Inactive"
 	}
 	nuser = model.User{
 		Username: dummy.Name,
 		Email:    dummy.Email,
 		Role:     dummy.Role,
 		Status:   dummy.Status,
+		Password: dummy.Password,
 	}
 	id, err := model.AddUser(&nuser)
 	if err != nil {

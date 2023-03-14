@@ -38,7 +38,7 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
   const {success, loading} = useAppSelector(state => state.userSignup)
 
   console.log(success,"success")
-  // if(success && loading)
+  // if(success && !loading)
   // {
   //   console.log("skjvbsk")
   //   dispatch(alertset("success added","success"))

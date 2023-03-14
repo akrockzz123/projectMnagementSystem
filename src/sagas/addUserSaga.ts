@@ -36,8 +36,10 @@ const addUser  = async (username : string,email: string,password: string,role : 
                 'Content-Type': 'application/json'
             },
         }
-    
-        const { data } = await axios.post('/user/add',{username,email,password,role},config)
+
+        const status : string = "Inactive"
+
+        const { data } = await axios.post('/user/add',{username,email,role,status,password},config)
 
         return data
 
