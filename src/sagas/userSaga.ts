@@ -31,10 +31,14 @@ const fetchUser  = async (email: string,password: string) => {
                 'Content-Type': 'application/json'
             },
         }
-    
-        //const { data } = await axios.post('/api/users/login',{email,password},config)
 
-        return 'aniket'
+        const username : string = email
+
+        const pass : string = password
+
+        const { data } = await axios.post('/user/login',{username,pass},config)
+
+        return data
 
     } catch (err) {
         
@@ -70,6 +74,10 @@ function* workuserSaga(action: Action) : any{
     try {
 
         //action.payload.email
+
+        console.log(action.payload.email,action.payload.password)
+
+
         const result = yield call(fetchUser,action.payload.email,action.payload.password);
 
         console.log(result)

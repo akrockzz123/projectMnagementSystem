@@ -357,7 +357,7 @@ export const userSignupFailAction: any= () => {
 
                             payload: {id}
                         })
-                    })
+                    },3000)
                 }
         }
 

@@ -4,9 +4,15 @@ import { Button, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+import Alert from "react-bootstrap/Alert";
+
 //import { useNavigate } from 'react-router-dom'
 
-import { userLoginRequestAction } from '../state/action-creators'
+import { alertset, userLoginRequestAction } from '../state/action-creators'
+import { useAppSelector } from '../Types'
+
+import Alerts from './Alertscreen'
+
 type Props = {}
 
 function LoginScreen({}: Props) {
@@ -23,7 +29,9 @@ function LoginScreen({}: Props) {
 
     const navigate = useNavigate()
 
+    const {success, loading,error,message,userId,userName} = useAppSelector(state => state.usersReducer)
 
+    const alertdata : []= useAppSelector(state => state.alertReducer)
     const emailFunc = (em : string) => {
 
         setEmail(em)
@@ -51,8 +59,15 @@ function LoginScreen({}: Props) {
 
     const signupHandler = () => {
 
-      dispatch(userLoginRequestAction())
+      dispatch(userLoginRequestAction(email,password))
     }
+
+    if(success)
+    {
+      dispatch(alertset("successfully logged in", "success"))
+    }
+
+    
     const submitHandlerFunc = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
         e.preventDefault()
@@ -70,6 +85,14 @@ function LoginScreen({}: Props) {
     }
     
   return (
+   <>
+    {alertdata.length > 0 && (
+         <Alert variant="success" style={{ width: "42rem", marginTop: "100px" }}>
+         <Alert.Heading>
+           This is a success alert which has green background
+         </Alert.Heading>
+       </Alert>
+    )},
     <Form style = {{marginTop : '100px'}}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
@@ -95,6 +118,7 @@ function LoginScreen({}: Props) {
       <Button variant = 'primary' onClick = {signupHandler}>SignUp</Button>
     
     </Form>
+    </>
   )
 }
 
