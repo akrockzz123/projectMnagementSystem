@@ -63,7 +63,7 @@ export const userSignupReducers = (_state: userstate = initialState, action : Ac
 
                 ..._state,
                 loading: false,
-                success: true,
+                success: true
                 
                 
             }

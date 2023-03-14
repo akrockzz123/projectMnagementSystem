@@ -36,7 +36,7 @@ export const courseAddReducer = (_state: addProjectState = initialState, action 
 
     switch(action.type)
     {
-        case userActionType.ASSIGN_PROJECT_REQUEST:
+        case courseActionType.ADD_PROJECT_REQUEST:
             return {
                 ..._state,
 
@@ -45,7 +45,7 @@ export const courseAddReducer = (_state: addProjectState = initialState, action 
         break;
 
 
-        case userActionType.ASSIGN_PROJECT_SUCCESS :
+        case courseActionType.ADD_PROJECT_SUCCESS :
             return {
                 ..._state,
 
@@ -55,7 +55,7 @@ export const courseAddReducer = (_state: addProjectState = initialState, action 
             }
         break;
 
-        case userActionType.ASSIGN_PROJECT_FAIL:
+        case courseActionType.ADD_PROJECT_FAIL:
             return {
 
                 ..._state,

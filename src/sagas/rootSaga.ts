@@ -14,7 +14,8 @@ import { AdduserSaga } from './addUserSaga';
 
 import { coursenotassignedSaga } from './courseNotAssign';
 
-
+import { AddprojectSaga } from './addProjectSaga';
+import { updateAdminSaga } from './updateAdminSaga';
 
 function* watchrootSaga() {
 
@@ -25,7 +26,7 @@ const rootSaga = function* rootSaga() {
 
   const sagas = [userSagas,courseSagas];
 
-  yield all([fork(userSagas),fork(courseSagas), fork(userListsSagas),fork(AdduserSaga), fork(coursenotassignedSaga)]);
+  yield all([fork(userSagas),fork(courseSagas),fork(updateAdminSaga), fork(userListsSagas),fork(AdduserSaga), fork(coursenotassignedSaga),fork(AddprojectSaga)]);
 }
 
 export default rootSaga

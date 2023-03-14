@@ -5,6 +5,12 @@
 
 
 
+
+
+
+
+
+
 import { takeEvery, take , select, call,put, fork} from  'redux-saga/effects';
 
 //import { USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,USER_LOGIN_FAIL } from '../constants';
@@ -18,16 +24,16 @@ import { userActionType } from '../state/action-types';
 import axios from 'axios';
 import { Action } from '../state/action';
 
-import { userLoginRequestAction, userSignupFailAction, userSignupSuccessAction } from '../state/action-creators';
+import { userLoginRequestAction, userSignupFailAction, userSignupSuccessAction, userUpdateAdminActionFail, userUpdateAdminActionSuccess } from '../state/action-creators';
 
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
 
 
-const addUser  = async (username : string,email: string,password: string,role : string) => {
+const addUser  = async (id : string) => {
 
-    console.log(email,password)
+    //console.log(email,password)
 
     try {
         
@@ -37,7 +43,7 @@ const addUser  = async (username : string,email: string,password: string,role : 
             },
         }
     
-        const { data } = await axios.post('/user/add',{username,email,password,role},config)
+        const { data } = await axios.post(`/user/update/${id}`,config)
 
         return data
 
@@ -66,43 +72,38 @@ const addUser  = async (username : string,email: string,password: string,role : 
 
 
 
-function* workadduserSaga(action: Action) : any{
+function* workupdateadminSaga(action: Action) : any{
 
     //yield takeEvery
 
-    console.log("work add user saga working")
+    console.log("work update admin saga working")
 
     try {
 
         //action.payload.email
-        const result = yield call(addUser,action.payload.username,action.payload.email,action.payload.password,action.payload.role);
+        const result = yield call(addUser,action.payload.id);
 
         console.log(result)
 
         // way of calling action from work saga
         
-       // yield put(userSignupSuccessAction)
+        yield put(userUpdateAdminActionSuccess)
 
-       yield put(userSignupSuccessAction)
     
 
     }
     catch(err) {
 
-        yield put(userSignupFailAction)
+        yield put(userUpdateAdminActionFail)
     }
 }
- function* watchadduserSaga() {
+ function* watchupdateadminSaga() {
 
     console.log("watch add user saga")
-    yield takeEvery(userActionType.USER_SIGNUP_REQUEST,workadduserSaga);
+    yield takeEvery(userActionType.USER_UPDATE_ADMIN_REQUEST,workupdateadminSaga);
 
     //yield call(handleLoginAction);
 
 }
 
-export const AdduserSaga = watchadduserSaga;
-
-function dispatch(arg0: { type: userActionType; }) {
-    throw new Error('Function not implemented.');
-}
+export const updateAdminSaga = watchupdateadminSaga

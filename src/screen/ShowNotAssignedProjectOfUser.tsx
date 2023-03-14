@@ -2,17 +2,18 @@
 
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Alert, Button, Table } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Loading from '../component/Loading';
-import { AssignProjectRequest, NotActiveProjectRequest } from '../state/action-creators';
+import { alertset, AssignProjectRequest, NotActiveProjectRequest } from '../state/action-creators';
 import { useAppSelector } from '../Types';
 
 import { useParams } from 'react-router-dom';
 
 import { useLocation } from 'react-router-dom';
+import Alerts from './Alertscreen';
 
 
 
@@ -130,9 +131,15 @@ const ProjectsOfUser: React.FunctionComponent<IAppProps> = (props) => {
     console.log("ahow project", userids,typeof(userids), course_not_assign_loading)
 
   const {loadingAssign, successAssign, errorAssign}   =  useAppSelector(state => state.courseReducer)
+  const alertData : [] = useAppSelector(state => state.alertReducer)
+  if(successAssign)
+  {
+    dispatch(alertset("assigning","success"))
+  }
 
   return (
    <div>
+    {alertData.length > 0 && <Alerts/>}
     {successAssign ? <div>SuccessFully Assigned</div> : errorAssign ? <div>Error in assigning</div> : <div></div>}
      {course_not_assign_loading ? <Loading/> : course_not_assign_error ? <h1>Error</h1> : (
 

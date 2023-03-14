@@ -8,6 +8,9 @@ import { AssignProjectRequest, courseAddRequestAction } from '../state/action-cr
 import { courseAddReducer } from '../state/reducers/courseAddReducer';
 import { useAppSelector } from '../Types';
 
+import { alertset } from '../state/action-creators';
+import Alerts from './Alertscreen';
+
 interface IAppProps {
 }
 
@@ -23,6 +26,8 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
 
     const dispatch = useDispatch()
 
+    const alertData   = useAppSelector(state => state.alertReducer);
+
     type addProjectState = {
 
         loadingAddCourse : boolean,
@@ -36,6 +41,7 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
 
     const {loadingAddCourse, errorAddCourse,successAddCourse} = addProject
 
+   
     const nameFunc = (name : string) => {
 
         setName(name)
@@ -44,7 +50,7 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
 
     const assigneeFunc = (assign : string) => {
 
-        setAssigneeid(AssignProjectRequest)
+        setAssigneeid(assign)
     }
 
     const submitHandlerFunc = () => {
@@ -53,8 +59,14 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
 
     }
 
-  return (
+    if(successAddCourse)
+    {
+      dispatch(alertset("successfully addedd","success"))
+    }
 
+  return (
+    <>
+    {successAddCourse && <Alerts/>},
     <Form style = {{marginTop : '100px'}}>
     <Form.Group className="mb-3" controlId="fullName">
 
@@ -82,9 +94,11 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
     <br/>
     {errorAddCourse ? <div style = {{color : 'red'}}>Please enter course and assignee id correctly</div> : <div></div>}
 
+    {successAddCourse ? <div style={{color : 'green'}}>Success</div> : <div></div>}
 
   
   </Form>
+  </>
   );
 };
 

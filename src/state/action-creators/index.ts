@@ -2,7 +2,9 @@ import { Dispatch } from "react"
 import { Action } from "../action"
 
 
-import { courseActionType, userActionType} from "../action-types"
+import { alertActionType, courseActionType, userActionType} from "../action-types"
+
+//import { v4 as uuidv4 } from 'uuid';
 
 export const userLoginRequestAction: any= (email : string, password: string) => {
 
@@ -208,12 +210,20 @@ export const userSignupRequestAction: any= (username : string, email : string, p
 }
 
 export const userSignupSuccessAction: any= (dispatch: Dispatch<Action>) => {
-    //return (dispatch: Dispatch<Action>) => {
-        dispatch({
 
-            type: userActionType.USER_SIGNUP_SUCCESS
-        })
+    console.log(" userSignupSuccessAction", "heyy")
+    //return (dispatch: Dispatch<Action>) => {
+       
+
+    return () => {
+
+        dispatch({
+                
+                type: userActionType.USER_SIGNUP_SUCCESS
+            })
+        }
     }
+    
 
 
 export const userSignupFailAction: any= () => {
@@ -306,6 +316,7 @@ export const userSignupFailAction: any= () => {
 
         export const courseAddRequestSuccess : any = () => {
 
+            console.log("courseaddrequestsuccess")
             return (dispatch: Dispatch<Action>) => {
                 dispatch({
                         
@@ -324,8 +335,71 @@ export const userSignupFailAction: any= () => {
                     })
                 }
         }
+
+        export const alertset : any = (msg : string,alertType : string) => {
+
+            return (dispatch: Dispatch<Action>) => {
+
+                const id = "234"
+                
+                dispatch({
+                        
+                        type: alertActionType.SET_ALERT,
+                        payload : {msg,alertType,id}
+                    });
+
+                    setTimeout(() => {
+                        dispatch({
+                            type : alertActionType.REMOVE_ALERT,
+
+                            payload: {id}
+                        })
+                    })
+                }
+        }
+
+
+        export const userUpdateAdminActionRequest : any = (id : string) => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.USER_UPDATE_ADMIN_REQUEST,
+
+                        payload : {id}
+                    })
+                }
+        }
+
+        
+        export const userUpdateAdminActionSuccess : any = () => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.USER_UPATE_ADMIN_SUCCESS
+
+                        
+                    })
+                }
+        }
+
+        
+        export const userUpdateAdminActionFail : any = () => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.USER_UPATE_ADMIN_FAIL
+
+                        
+                    })
+                }
+        }
         
         
+
+
 
 
     // get projects of user 

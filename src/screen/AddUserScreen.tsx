@@ -6,7 +6,9 @@ import { Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import { userSignupRequestAction } from '../state/action-creators';
+import { alertset, userSignupRequestAction } from '../state/action-creators';
+import { useAppSelector } from '../Types';
+import Alerts from './Alertscreen';
 
 interface IAppProps {
 }
@@ -31,6 +33,15 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
 
   const navigate = useNavigate()
 
+  const alertData : []  = useAppSelector(state => state.alertReducer);
+  
+  const {success} = useAppSelector(state => state.userSignup)
+
+  console.log(success,"success")
+  if(success)
+  {
+    dispatch(alertset("success added","success"))
+  }
   const usernameFunc = (e : string) => {
 
     setUsername(e)
@@ -85,7 +96,10 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
       }
   }
   
+ 
 return (
+  <>
+  {alertData.length > 0 && <Alerts/>}
   <Form style = {{marginTop : '100px'}}>
     <Form.Group className="mb-3" controlId="fullName">
 
@@ -124,6 +138,7 @@ return (
     {errorss ? <div style = {{color : 'red'}}>Please enter email and password correctly</div> : <div></div>}
   
   </Form>
+  </>
   );
 };
 

@@ -10,7 +10,7 @@ import Message from '../component/Message'
 import { useAppSelector } from '../Types'
 
 import { useDispatch } from 'react-redux'
-import { UsersListRequestAction } from '../state/action-creators'
+import { UsersListRequestAction, userUpdateAdminActionRequest } from '../state/action-creators'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -99,10 +99,22 @@ function ListAllUsersScreen({}: Props) {
     errorusers : boolean*/
 //var ts : string = typeof(users).toString()
 
+const updateUserHandler = (id : string,e : React.MouseEvent<HTMLButtonElement>) => {
+
+  e.preventDefault()
+
+  //dispatch()
+
+  dispatch(userUpdateAdminActionRequest(id))
+
+  dispatch(UsersListRequestAction())
+}
+
+
   return (
     
    
-    <>
+    <div>
     <br/>
     <br/>
 
@@ -116,6 +128,7 @@ function ListAllUsersScreen({}: Props) {
           <th>email</th>
           <th>Role</th>
           <th>Assign Project</th>
+          <th>Update user</th>
         </tr>
       </thead>
       <tbody>
@@ -127,6 +140,7 @@ function ListAllUsersScreen({}: Props) {
               <td>{u.email}</td>
               <td>{u.role}</td>
               <td ><Button variant='primary' onClick = { () => AssignHandler(u.user_id,navigate)}>Assign</Button> </td>
+              <td>{u.role == "User" ? (<Button onClick = {(e) => updateUserHandler(u.user_id,e)}>Update User</Button>) : (<div></div>)} </td>
             </tr>
           )}
         
@@ -134,7 +148,7 @@ function ListAllUsersScreen({}: Props) {
         
       </tbody>
     </Table></> : <h1>Error</h1> }
-  </>
+  </div>
     
   )
 }

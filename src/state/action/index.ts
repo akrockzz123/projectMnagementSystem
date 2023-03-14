@@ -7,7 +7,7 @@
 
 
 
-import { userActionType } from "../action-types"
+import { alertActionType, userActionType } from "../action-types"
 
 import { courseActionType } from "../action-types"
 
@@ -265,10 +265,38 @@ interface addProjectFail {
     payload?: any
 }
 
+interface setAlertype {
+
+    type : alertActionType.SET_ALERT,
+    payload?:any
+}
+
+interface removeAlerttype {
+    type : alertActionType.REMOVE_ALERT,
+    payload?:any
+}
+
+interface userUpdateAdminRequest {
+
+    type : userActionType.USER_UPDATE_ADMIN_REQUEST,
+    payload?: any
+}
+
+interface userUpdateAdminSuccess {
+
+    type : userActionType.USER_UPATE_ADMIN_SUCCESS
+    payload?: any
+}
+
+interface userUpdateAdminFail {
+
+    type : userActionType.USER_UPATE_ADMIN_FAIL
+    payload?: any
+}
 
 
 
-export type Action = userLoginRequest | userLoginSuccess | userLoginFail | userSignupRequest|userSignupSuccess|userSignupFail|courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail | getProjectsofUserRequest | getProjectsofUserSuccess | getProjectsofUserFail | getALLNotAssignedRequest | getAllNotAssignedSuccess | getAllNotAssignedFail | assignProjectToUserFail | assignProjectToUserRequest | assignProjectToUserSuccess | addProjectRequest | addProjectSuccess | addProjectFail
+export type Action = userLoginRequest | userLoginSuccess | userLoginFail | userSignupRequest | userSignupSuccess | userSignupFail | courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail | getProjectsofUserRequest | getProjectsofUserSuccess | getProjectsofUserFail | getALLNotAssignedRequest | getAllNotAssignedSuccess | getAllNotAssignedFail | assignProjectToUserFail | assignProjectToUserRequest | assignProjectToUserSuccess | addProjectRequest | addProjectSuccess | addProjectFail | setAlertype | removeAlerttype | userUpdateAdminRequest | userUpdateAdminSuccess | userUpdateAdminFail
 
 
 

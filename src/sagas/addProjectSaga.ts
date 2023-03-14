@@ -26,6 +26,7 @@ import { courseAddRequestFail, courseAddRequestSuccess, userLoginRequestAction, 
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
+import { useDispatch } from 'react-redux';
 
 
 const addProject = async (name : string,assignee_id: string) => {
@@ -39,8 +40,9 @@ const addProject = async (name : string,assignee_id: string) => {
                 'Content-Type': 'application/json'
             },
         }
-    
-        const { data } = await axios.post('/project/add',{name,assignee_id},config)
+
+        const status : string = "Inactive"
+        const { data } = await axios.post('/project/add',{name,assignee_id,status},config)
 
         return data
 
@@ -83,7 +85,8 @@ function* workaddProjectSaga(action: Action) : any{
         console.log(result)
 
         // way of calling action from work saga
-        
+       // const dispacth = useDispatch()
+
         yield put(courseAddRequestSuccess)
 
     
@@ -103,4 +106,4 @@ function* workaddProjectSaga(action: Action) : any{
 
 }
 
-export const AdduserSaga = watchaddProjectSaga;
+export const AddprojectSaga = watchaddProjectSaga;

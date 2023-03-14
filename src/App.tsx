@@ -19,6 +19,7 @@ import SignupScreen from './screen/SignupScreen';
 import ListAllUsersScreen from './screen/ListAllUsersScreen';
 import AddUserScreen from './screen/AddUserScreen';
 import ShowProjectOfUser from './screen/ShowNotAssignedProjectOfUser';
+import AddProjectScreen from './screen/AddProjectScreen';
 
 function App() {
 
