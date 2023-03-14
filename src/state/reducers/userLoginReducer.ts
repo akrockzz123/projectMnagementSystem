@@ -56,7 +56,15 @@ type usersState = {
 
     successUsers : boolean,
 
-    errorusers : boolean
+    errorusers : boolean,
+
+   
+
+    message : string,
+
+    userId : string,
+
+    userName : string
 }
 
 const initialState2 : usersState = {
@@ -67,7 +75,14 @@ const initialState2 : usersState = {
 
     successUsers : false,
 
-    errorusers : false
+    errorusers : false,
+
+    message : "",
+
+    userId : "",
+
+    userName : ""
+
 
 }
 
@@ -95,7 +110,12 @@ export const userLoginReducers = (_state: userstate = initialState, action : Act
 
                 ..._state,
                 loading: false,
-                success: true
+                success: true,
+                message : action.payload.message,
+
+                userId : action.payload.userId,
+            
+                userName : action.payload.userName
                 
             }
         break;

@@ -54,6 +54,8 @@ function App() {
         <Route path = '/users/add' element = {<AddUserScreen/>} />
 
         <Route path = '/project/add' element = {<AddProjectScreen/>} />
+
+        <Route path = '/user/login' element = {<LoginScreen/>} />
         
        
        </Routes>

@@ -76,7 +76,7 @@ function* workuserSaga(action: Action) : any{
 
         // way of calling action from work saga
         
-        yield put(userLoginSuccessAction)
+        yield put(userLoginSuccessAction(result))
 
     
 

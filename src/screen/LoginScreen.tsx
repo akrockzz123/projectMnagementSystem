@@ -51,15 +51,15 @@ function LoginScreen({}: Props) {
 
     const signupHandler = () => {
 
-      navigate('/signup')
+      dispatch(userLoginRequestAction())
     }
     const submitHandlerFunc = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
         e.preventDefault()
         
-        let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+       
 
-        if(email.match(regex) && (password.length >= 6))
+        if(email.length > 0 && (password.length >= 6))
         {
             dispatch(userLoginRequestAction(email,password))
         }
@@ -84,16 +84,10 @@ function LoginScreen({}: Props) {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password"  onChange = {(event) => passFunc(event.target.value)}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox" style = {{margin : '2px'}}>
-        <Form.Check type="checkbox" label="Admin" onChange = {(event) => adminFunc(event.target.value)} disabled = {!isAdmin} checked = {isAdmin}/>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicCheckbox" style = {{margin : '2px'}}>
-        <Form.Check type="checkbox" label="User" onChange = {(event) => userFunc(event.target.value)} disabled = {isAdmin} checked = {!isAdmin}/>
-      </Form.Group>
-      <Button variant="primary" type="submit" onClick = {(event) => submitHandlerFunc(event)}>
+     
+      {/* <Button variant="primary" type="submit" onClick = {(event) => submitHandlerFunc(event)}>
         Submit
-      </Button>
+      </Button> */}
       <br/>
       <br/>
       {errorss ? <div style = {{color : 'red'}}>Please enter email and password correctly</div> : <div></div>}

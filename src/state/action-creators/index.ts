@@ -19,16 +19,19 @@ export const userLoginRequestAction: any= (email : string, password: string) => 
     }
 }
 
-export const userLoginSuccessAction: any= (dispatch: Dispatch<Action>) => {
+export const userLoginSuccessAction: any= (result : any) => {
 
     //return (dispatch: Dispatch<Action>) => {
 
-    console.log("login success action")
+    return (dispatch: Dispatch<Action>) => {
+
         dispatch({
 
-            type: userActionType.USER_LOGIN_SUCCESS
-        })
-   // }
+            type: userActionType.USER_LOGIN_SUCCESS,
+
+            payload : result
+      })
+    }
 }
 
 export const userLoginFailAction: any= () => {
