@@ -21,7 +21,7 @@ import { courseActionType, userActionType } from '../state/action-types';
 import axios from 'axios';
 import { Action } from '../state/action';
 
-import { courseAddRequestFail, courseAddRequestSuccess, userLoginRequestAction, userSignupFailAction, userSignupSuccessAction } from '../state/action-creators';
+import { courseAddRequestFail, courseAddRequestSuccess, userLoginRequestAction, userSignupFailAction } from '../state/action-creators';
 
 import { userLoginFailAction } from '../state/action-creators';
 

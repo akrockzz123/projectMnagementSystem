@@ -18,7 +18,7 @@ import { userActionType } from '../state/action-types';
 import axios from 'axios';
 import { Action } from '../state/action';
 
-import { userLoginRequestAction, userSignupFailAction, userSignupSuccessAction } from '../state/action-creators';
+import { userLoginRequestAction, userSignupFailAction } from '../state/action-creators';
 
 import { userLoginFailAction } from '../state/action-creators';
 
@@ -83,7 +83,10 @@ function* workadduserSaga(action: Action) : any{
         
        // yield put(userSignupSuccessAction)
 
-       yield put(userSignupSuccessAction)
+       yield put({
+                
+        type: userActionType.USER_SIGNUP_SUCCESS
+    })
     
 
     }

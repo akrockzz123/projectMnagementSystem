@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS user(
     username varchar(50) NOT NULL,
     email varchar(50) NOT NULL,
     role ENUM("Admin","User") NOT NULL DEFAULT "User",
-    status ENUM("Active","Inactive") NOT NULL DEFAULT "Active"
+    status ENUM("Active","Inactive") NOT NULL DEFAULT "Active",
+    password varchar(50) NOT NULL
 );
 CREATE TABLE IF NOT EXISTS project(
     project_id int PRIMARY KEY AUTO_INCREMENT,

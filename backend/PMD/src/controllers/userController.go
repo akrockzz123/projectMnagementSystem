@@ -11,6 +11,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var auth struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
 type UserPayload struct {
 	Name     string `json:"username"`
 	Email    string `json:"email"`
@@ -47,6 +52,7 @@ func GetUserById(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, u)
 }
+
 func Adduser(c *gin.Context) {
 	const funnctionName = "controllers.Adduser"
 	body, err := ioutil.ReadAll(c.Request.Body)
@@ -160,4 +166,28 @@ func UpdateEmail(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"id": id})
+}
+
+func Login(c *gin.Context) {
+
+	if err := c.ShouldBindJSON(&auth); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	u, err := model.GetUserByCred(auth.Username, auth.Password)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"message": "Invalid username or password!",
+		})
+		return
+	}
+	if u.User_id > 0 {
+		c.JSON(http.StatusOK, gin.H{
+			"message":  "Welcome user!",
+			"userId":   u.User_id,
+			"userName": u.Username,
+		})
+
+	}
+
 }

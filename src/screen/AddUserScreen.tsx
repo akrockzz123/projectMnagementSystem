@@ -35,13 +35,15 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
 
   const alertData : []  = useAppSelector(state => state.alertReducer);
   
-  const {success} = useAppSelector(state => state.userSignup)
+  const {success, loading} = useAppSelector(state => state.userSignup)
 
   console.log(success,"success")
-  if(success)
-  {
-    dispatch(alertset("success added","success"))
-  }
+  // if(success && loading)
+  // {
+  //   console.log("skjvbsk")
+  //   dispatch(alertset("success added","success"))
+
+  // }
   const usernameFunc = (e : string) => {
 
     setUsername(e)

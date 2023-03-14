@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router-dom'
 
 import Loading from '../component/Loading'
 
+
+
 const AssignHandler = (userid : string,navigate : any) => {
 
   console.log("AssignHandler function", userid)
@@ -59,6 +61,7 @@ type usersTypesInfo = {
 
 
 
+
 function ListAllUsersScreen({}: Props) {
 
 
@@ -75,7 +78,13 @@ function ListAllUsersScreen({}: Props) {
 
   const dispatch = useDispatch()
 
+  const {loadingupdate,successupdate,errorupdate} = useAppSelector(state => state.userUpdateAdminReducer)
 
+
+  if(successupdate)
+  {
+    dispatch(UsersListRequestAction())
+  }
 
   useEffect(() => {
 
@@ -83,6 +92,8 @@ function ListAllUsersScreen({}: Props) {
   },[])
 
   const usersStates : usersTypesInfo  = useAppSelector(state => state.usersReducer)
+
+ 
 
 
   
@@ -107,7 +118,7 @@ const updateUserHandler = (id : string,e : React.MouseEvent<HTMLButtonElement>) 
 
   dispatch(userUpdateAdminActionRequest(id))
 
-  dispatch(UsersListRequestAction())
+  //dispatch(UsersListRequestAction())
 }
 
 

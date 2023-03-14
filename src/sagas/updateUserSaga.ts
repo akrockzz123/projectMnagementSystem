@@ -21,7 +21,7 @@ import { userActionType } from '../state/action-types';
 import axios from 'axios';
 import { Action } from '../state/action';
 
-import { userLoginRequestAction, userSignupFailAction, userSignupSuccessAction } from '../state/action-creators';
+import { userLoginRequestAction, userSignupFailAction } from '../state/action-creators';
 
 import { userLoginFailAction } from '../state/action-creators';
 
@@ -84,7 +84,7 @@ function* workupdateuserSaga(action: Action) : any{
 
         // way of calling action from work saga
         
-        yield put(userSignupSuccessAction)
+        //yield put(userSignupSuccessAction)
 
     
 

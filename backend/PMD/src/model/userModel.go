@@ -93,3 +93,15 @@ func UpdateUserEmail(id int, emails string) error {
 	return err
 
 }
+
+func GetUserByCred(username1 string, password1 string) (u User, err error) {
+
+	o := orm.NewOrm()
+
+	err = o.QueryTable(new(User)).Filter("username", username1).Filter("password", password1).One(&u)
+	if err != nil {
+		fmt.Println("err : ", err)
+	}
+	return u, err
+
+}

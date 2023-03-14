@@ -209,20 +209,20 @@ export const userSignupRequestAction: any= (username : string, email : string, p
     }
 }
 
-export const userSignupSuccessAction: any= (dispatch: Dispatch<Action>) => {
+// export const userSignupSuccessAction: any= (dispatch: Dispatch<Action>) => {
 
-    console.log(" userSignupSuccessAction", "heyy")
-    //return (dispatch: Dispatch<Action>) => {
+//     console.log(" userSignupSuccessAction", "heyy")
+//     //return (dispatch: Dispatch<Action>) => {
        
 
-    return () => {
+//     return () => {
 
-        dispatch({
+//         dispatch({
                 
-                type: userActionType.USER_SIGNUP_SUCCESS
-            })
-        }
-    }
+//                 type: userActionType.USER_SIGNUP_SUCCESS
+//             })
+//         }
+//     }
     
 
 
