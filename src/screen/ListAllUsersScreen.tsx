@@ -84,7 +84,7 @@ function ListAllUsersScreen({}: Props) {
   const useridget : any = val.userId
   //const navigate : any = useNavigate()
 
-  if(!usersall)
+  if(localStorage.getItem('userdata') == 'undefined')
   {
     navigate('/login')
   }
@@ -102,6 +102,7 @@ function ListAllUsersScreen({}: Props) {
   const usersStates : usersTypesInfo  = useAppSelector(state => state.usersReducer)
   const {loadingupdate,successupdate,errorupdate} = useAppSelector(state => state.userUpdateAdminReducer)
   const {users,usersLoading ,successUsers,errorusers} = usersStates
+  const {loadinguserinfo,successuserinfo,usersData} = useAppSelector(state => state.userinfoReducer)
 
 
   if(successupdate)
@@ -109,29 +110,21 @@ function ListAllUsersScreen({}: Props) {
     dispatch(UsersListRequestAction())
   }
 
+  if(successuserinfo) // storing data of login data
+  {
+    const datas = JSON.stringify(usersData)
+
+    localStorage.setItem('userLoginData',datas)
+  }
+
   useEffect(() => {
 
+    dispatch(userinfoRequest(useridget))
     dispatch(UsersListRequestAction())
     //dispatch(userinfoRequest(useridget))
     //dispatch(UsersListRequestAction())
   },[])
-
-
- 
-
-
   
-
-  
-  console.log("check",users,usersLoading)
-  /*users : [],
-
-    usersLoading : boolean,
-
-    successUsers : boolean,
-
-    errorusers : boolean*/
-//var ts : string = typeof(users).toString()
 
 const updateUserHandler = (id : string,e : React.MouseEvent<HTMLButtonElement>) => {
 
@@ -144,7 +137,13 @@ const updateUserHandler = (id : string,e : React.MouseEvent<HTMLButtonElement>) 
   //dispatch(UsersListRequestAction())
 }
 
+// const values : any = localStorage.getItem('userLoginData')
 
+// const userStatus : 
+// if(values != 'undefined')
+// {
+
+// }
   return (
     
    
