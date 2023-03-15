@@ -87,7 +87,7 @@ function* workaddProjectSaga(action: Action) : any{
         // way of calling action from work saga
        // const dispacth = useDispatch()
 
-        yield put(courseAddRequestSuccess)
+        yield put({type : courseActionType.ADD_PROJECT_SUCCESS})
 
     
 

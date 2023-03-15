@@ -10,7 +10,7 @@ import Message from '../component/Message'
 import { useAppSelector } from '../Types'
 
 import { useDispatch } from 'react-redux'
-import { UsersListRequestAction, userUpdateAdminActionRequest } from '../state/action-creators'
+import { userinfoRequest, UsersListRequestAction, userUpdateAdminActionRequest } from '../state/action-creators'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -19,6 +19,16 @@ import Loading from '../component/Loading'
 
 
 const AssignHandler = (userid : string,navigate : any) => {
+
+  
+
+  
+  // const val = JSON.parse(usersall)
+
+
+  // const useridget : any = val.userId
+
+
 
   console.log("AssignHandler function", userid)
   
@@ -64,9 +74,20 @@ type usersTypesInfo = {
 
 function ListAllUsersScreen({}: Props) {
 
+  const usersall : any = localStorage.getItem('userdata')
 
   const navigate = useNavigate()
 
+  const val = JSON.parse(usersall)
+
+
+  const useridget : any = val.userId
+  //const navigate : any = useNavigate()
+
+  if(!usersall)
+  {
+    navigate('/login')
+  }
   /*users : [],
 
   usersLoading : true,
@@ -78,7 +99,9 @@ function ListAllUsersScreen({}: Props) {
 
   const dispatch = useDispatch()
 
+  const usersStates : usersTypesInfo  = useAppSelector(state => state.usersReducer)
   const {loadingupdate,successupdate,errorupdate} = useAppSelector(state => state.userUpdateAdminReducer)
+  const {users,usersLoading ,successUsers,errorusers} = usersStates
 
 
   if(successupdate)
@@ -89,17 +112,17 @@ function ListAllUsersScreen({}: Props) {
   useEffect(() => {
 
     dispatch(UsersListRequestAction())
+    //dispatch(userinfoRequest(useridget))
+    //dispatch(UsersListRequestAction())
   },[])
 
-  const usersStates : usersTypesInfo  = useAppSelector(state => state.usersReducer)
 
  
 
 
   
 
-  const {users,usersLoading ,successUsers,errorusers} = usersStates
-
+  
   console.log("check",users,usersLoading)
   /*users : [],
 

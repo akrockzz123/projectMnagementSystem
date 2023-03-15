@@ -1,32 +1,36 @@
-import { all } from 'redux-saga/effects';
+import { all } from "redux-saga/effects";
 
+import { userSagas } from "./userSaga";
 
+import { courseSagas } from "./courseSaga";
 
-import { userSagas } from './userSaga';
+import { userListsSagas } from "./usersListSaga";
 
-import { courseSagas } from './courseSaga';
+import { fork } from "redux-saga/effects";
 
-import { userListsSagas } from './usersListSaga';
+import { AdduserSaga } from "./addUserSaga";
 
-import { fork } from 'redux-saga/effects';
+import { coursenotassignedSaga } from "./courseNotAssign";
 
-import { AdduserSaga } from './addUserSaga';
+import { AddprojectSaga } from "./addProjectSaga";
+import { updateAdminSaga } from "./updateAdminSaga";
 
-import { coursenotassignedSaga } from './courseNotAssign';
-
-import { AddprojectSaga } from './addProjectSaga';
-import { updateAdminSaga } from './updateAdminSaga';
-
-function* watchrootSaga() {
-
-
-}
+import { userinfoSagas } from "./getUserSaga";
+function* watchrootSaga() {}
 
 const rootSaga = function* rootSaga() {
+  const sagas = [userSagas, courseSagas];
 
-  const sagas = [userSagas,courseSagas];
+  yield all([
+    fork(userSagas),
+    fork(courseSagas),
+    fork(updateAdminSaga),
+    fork(userListsSagas),
+    fork(AdduserSaga),
+    fork(coursenotassignedSaga),
+    fork(AddprojectSaga),
+    fork(userinfoSagas)
+  ]);
+};
 
-  yield all([fork(userSagas),fork(courseSagas),fork(updateAdminSaga), fork(userListsSagas),fork(AdduserSaga), fork(coursenotassignedSaga),fork(AddprojectSaga)]);
-}
-
-export default rootSaga
+export default rootSaga;

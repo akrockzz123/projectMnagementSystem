@@ -10,6 +10,7 @@ import { useAppSelector } from '../Types';
 
 import { alertset } from '../state/action-creators';
 import Alerts from './Alertscreen';
+import { Alertshow } from '../component/AlertShow';
 
 interface IAppProps {
 }
@@ -59,14 +60,19 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
 
     }
 
-    if(successAddCourse)
-    {
-      dispatch(alertset("successfully addedd","success"))
-    }
+    // if(successAddCourse)
+    // {
+    //   dispatch(alertset("successfully addedd","success"))
+    // }
+
+    const arr = {"msgtype" : "success", "msg" : "successfully added course"}
+
+    const arr2 = {"msgtype" : "danger", "msg" : "course not added"}
 
   return (
     <>
-    {successAddCourse && <Alerts/>},
+    {successAddCourse && <Alertshow arrs = {arr}/>},
+    {errorAddCourse && <Alertshow arrs = {arr2} />},
     <Form style = {{marginTop : '100px'}}>
     <Form.Group className="mb-3" controlId="fullName">
 
@@ -92,9 +98,9 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
     
     <br/>
     <br/>
-    {errorAddCourse ? <div style = {{color : 'red'}}>Please enter course and assignee id correctly</div> : <div></div>}
+    {/* {errorAddCourse ? <div style = {{color : 'red'}}>Please enter course and assignee id correctly</div> : <div></div>}
 
-    {successAddCourse ? <div style={{color : 'green'}}>Success</div> : <div></div>}
+    {successAddCourse ? <div style={{color : 'green'}}>Success</div> : <div></div>} */}
 
   
   </Form>

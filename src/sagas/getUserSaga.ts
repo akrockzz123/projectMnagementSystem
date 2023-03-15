@@ -1,5 +1,8 @@
 
 
+
+
+
 import { takeEvery, take , select, call,put, fork} from  'redux-saga/effects';
 
 //import { USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,USER_LOGIN_FAIL } from '../constants';
@@ -13,30 +16,31 @@ import { userActionType } from '../state/action-types';
 import axios from 'axios';
 import { Action } from '../state/action';
 
-import { userLoginRequestAction } from '../state/action-creators';
+import { userinfoSuccess, userLoginRequestAction } from '../state/action-creators';
 
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
 
 
-const fetchUser  = async (email: string,password: string) => {
+const fetchUserinfo  = async (id : string) => {
 
-    console.log(email,password)
+    //console.log(email,password)
 
     try {
         
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }
+        // const config = {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        // }
 
-        const username : string = email
+       // const username : string = email
 
-        const pass : string = password
+        //const pass : string = password
 
-        const { data } = await axios.post('/user/login',{email,password},config)
+
+        const { data } = await axios.get(`/user/${id}`)
 
         return data
 
@@ -65,7 +69,7 @@ const fetchUser  = async (email: string,password: string) => {
 
 
 
-function* workuserSaga(action: Action) : any{
+function* workuserinfoSaga(action: Action) : any{
 
     //yield takeEvery
 
@@ -75,32 +79,33 @@ function* workuserSaga(action: Action) : any{
 
         //action.payload.email
 
-        console.log(action.payload.email,action.payload.password)
+        console.log(action.payload,action.payload.id)
 
 
-        const result = yield call(fetchUser,action.payload.email,action.payload.password);
+        const result = yield call(fetchUserinfo,action.payload.id);
 
-        console.log(result)
+        console.log(result,"chekcing usernfo saga")
 
         // way of calling action from work saga
         
-        yield put(userLoginSuccessAction(result))
+        yield put({type : userActionType.USER_INFO_SUCCESS, payload : result})
+        
 
     
 
     }
     catch(err) {
 
-        yield put(userLoginFailAction())
+        yield put({type : userActionType.USER_INFO_FAIL})
     }
 }
- function* watchuserSaga() {
+ function* watchuserinfoSaga() {
 
     console.log("watch saga")
-    yield takeEvery(userActionType.USER_LOGIN_REQUEST,workuserSaga);
+    yield takeEvery(userActionType.USER_INFO_REQUEST,workuserinfoSaga);
 
     //yield call(handleLoginAction);
 
 }
 
-export const userSagas = watchuserSaga;
+export const userinfoSagas = watchuserinfoSaga;

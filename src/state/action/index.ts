@@ -1,362 +1,307 @@
+import { Interface } from "readline";
+import { alertActionType, userActionType } from "../action-types";
 
-
-
-
-
-
-
-
-
-import { alertActionType, userActionType } from "../action-types"
-
-import { courseActionType } from "../action-types"
+import { courseActionType } from "../action-types";
 
 //import { userSignupActionType } from "../action-types"
 
-
 type userinfo1 = {
+  email: string;
 
-    email : string
-
-    password : string
-
-
-   
-    
-}
+  password: string;
+};
 
 type userinfo = {
+  email: string;
 
-    email : string
+  password: string;
 
-    password : string
+  success: boolean;
 
+  //data : any
+};
 
-    success : boolean
-
-    //data : any
-
-    
-}
-
-type userSignupInfo ={
-    fullName : string,
-    email : string ,
-    password : string
-}
-
+type userSignupInfo = {
+  fullName: string;
+  email: string;
+  password: string;
+};
 
 type successLogin = {
-
-    success : boolean
-}
-
+  success: boolean;
+};
 
 interface userLoginRequest {
+  type: userActionType.USER_LOGIN_REQUEST;
 
-    type: userActionType.USER_LOGIN_REQUEST
-
-    payload?: any
-
-    
+  payload?: any;
 }
 
 interface userLoginSuccess {
+  type: userActionType.USER_LOGIN_SUCCESS;
 
-    type: userActionType.USER_LOGIN_SUCCESS
-
-    payload?: any
-
-
-
-   
+  payload?: any;
 }
 
 interface userLoginFail {
+  type: userActionType.USER_LOGIN_FAIL;
 
-    type: userActionType.USER_LOGIN_FAIL
-
-    payload?: any
+  payload?: any;
 }
 
-
 interface courseAssignRequest {
+  type: courseActionType.COURSE_ASSIGN_REQUEST;
 
-    type: courseActionType.COURSE_ASSIGN_REQUEST
-
-    payload?: any
-
-    
+  payload?: any;
 }
 
 interface courseAssignSuccess {
+  type: courseActionType.COURSE_ASSIGN_SUCCESS;
 
-    type: courseActionType.COURSE_ASSIGN_SUCCESS
-
-    payload?: any
-
-
-
-   
+  payload?: any;
 }
 
 interface courseAssignFail {
+  type: courseActionType.COURSE_ASSIGN_FAIL;
 
-    type: courseActionType.COURSE_ASSIGN_FAIL
-
-    payload?: any
+  payload?: any;
 }
 
 interface courseDeleteFromUserRequest {
+  type: courseActionType.COURSE_DELETE_FROM_USER_REQUEST;
 
-    type: courseActionType.COURSE_DELETE_FROM_USER_REQUEST
-
-    payload?: any
+  payload?: any;
 }
 
 interface courseDeleteFromUserSuccess {
+  type: courseActionType.COURSE_DELETE_FROM_USER_SUCCESS;
 
-    type: courseActionType.COURSE_DELETE_FROM_USER_SUCCESS
-
-    payload?: any
+  payload?: any;
 }
 
 interface courseDeleteFromUserFail {
+  type: courseActionType.COURSE_DELETE_FROM_USER_FAIL;
 
-    type: courseActionType.COURSE_DELETE_FROM_USER_FAIL
-
-    payload?: any
+  payload?: any;
 }
 
-
 interface courseDeleteRequest {
+  type: courseActionType.COURSE_DELETE_REQUEST;
 
-    type: courseActionType.COURSE_DELETE_REQUEST
-
-    payload?: any
+  payload?: any;
 }
 
 interface courseDeleteSuccess {
+  type: courseActionType.COURSE_DELETE_SUCCESS;
 
-    type: courseActionType.COURSE_DELETE_SUCCESS
-
-    payload?: any
+  payload?: any;
 }
 
 interface courseDeleteFail {
+  type: courseActionType.COURSE_DELETE_FAIL;
 
-    type: courseActionType.COURSE_DELETE_FAIL
-
-    payload?: any
+  payload?: any;
 }
 
 interface usersListRequest {
+  type: userActionType.USERS_LIST_REQUEST
 
-    type: userActionType.USERS_LIST_REQUEST
-
-    payload?: any
+  payload?: any
 }
 
-interface usersListSuccess{
+interface usersListSuccess {
+  type: userActionType.USERS_LIST_SUCCESS
 
-    type: userActionType.USERS_LIST_SUCCESS
-
-    payload?: any
+  payload?: any
 }
 
 interface usersListFail {
+  type: userActionType.USERS_LIST_FAIL;
 
-    type: userActionType.USERS_LIST_FAIL
-
-    payload?: any
+  payload?: any;
 }
 
 //signup
 interface userSignupRequest {
-    type: userActionType.USER_SIGNUP_REQUEST
-    payload?: any
+  type: userActionType.USER_SIGNUP_REQUEST;
+  payload?: any;
 }
 
 interface userSignupSuccess {
-    type: userActionType.USER_SIGNUP_SUCCESS
-    payload?: any
+  type: userActionType.USER_SIGNUP_SUCCESS;
+  payload?: any;
 }
 
 interface userSignupFail {
-    type: userActionType.USER_SIGNUP_FAIL
-    payload?: any
+  type: userActionType.USER_SIGNUP_FAIL;
+  payload?: any;
 }
-
 
 // GET PROJECTS OF USER action
 
 interface getProjectsofUserRequest {
-    type: userActionType.USER_SIGNUP_REQUEST
-    payload?: any
+  type: userActionType.USER_SIGNUP_REQUEST;
+  payload?: any;
 }
 
 interface getProjectsofUserSuccess {
-    type: userActionType.USER_SIGNUP_SUCCESS
-    payload?: any
+  type: userActionType.USER_SIGNUP_SUCCESS;
+  payload?: any;
 }
 
 interface getProjectsofUserFail {
-    type: userActionType.USER_SIGNUP_FAIL
-    payload?: any
+  type: userActionType.USER_SIGNUP_FAIL;
+  payload?: any;
 }
 
 interface getALLNotAssignedRequest {
+  type: courseActionType.COURSE_NOT_ASSIGN_REQUEST;
 
-    type : courseActionType.COURSE_NOT_ASSIGN_REQUEST,
-
-    payload?: any
+  payload?: any;
 }
 
 interface getAllNotAssignedSuccess {
+  type: courseActionType.COURSE_NOT_ASSIGN_SUCCESS;
 
-    type : courseActionType.COURSE_NOT_ASSIGN_SUCCESS,
-
-    payload?: any
+  payload?: any;
 }
 
 interface getAllNotAssignedFail {
+  type: courseActionType.COURSE_NOT_ASSIGN_FAIL;
 
-    type : courseActionType.COURSE_NOT_ASSIGN_FAIL,
-
-    payload?: any
+  payload?: any;
 }
 
 interface assignProjectToUserRequest {
+  type: userActionType.ASSIGN_PROJECT_REQUEST;
 
-    type : userActionType.ASSIGN_PROJECT_REQUEST,
-
-    payload?: any
+  payload?: any;
 }
 
 interface assignProjectToUserSuccess {
+  type: userActionType.ASSIGN_PROJECT_SUCCESS;
 
-    type : userActionType.ASSIGN_PROJECT_SUCCESS,
-
-    payload?: any
+  payload?: any;
 }
 
 interface assignProjectToUserFail {
-
-    type : userActionType.ASSIGN_PROJECT_FAIL,
-    payload?: any
+  type: userActionType.ASSIGN_PROJECT_FAIL;
+  payload?: any;
 }
 
 interface addProjectRequest {
-
-    type : courseActionType.ADD_PROJECT_REQUEST,
-    payload?: any
-
+  type: courseActionType.ADD_PROJECT_REQUEST;
+  payload?: any;
 }
 
 interface addProjectSuccess {
-
-    type : courseActionType.ADD_PROJECT_SUCCESS,
-    payload?: any
+  type: courseActionType.ADD_PROJECT_SUCCESS;
+  payload?: any;
 }
 
 interface addProjectFail {
-
-    type : courseActionType.ADD_PROJECT_FAIL,
-    payload?: any
+  type: courseActionType.ADD_PROJECT_FAIL;
+  payload?: any;
 }
 
 interface setAlertype {
-
-    type : alertActionType.SET_ALERT,
-    payload?:any
+  type: alertActionType.SET_ALERT;
+  payload?: any;
 }
 
 interface removeAlerttype {
-    type : alertActionType.REMOVE_ALERT,
-    payload?:any
+  type: alertActionType.REMOVE_ALERT;
+  payload?: any;
 }
 
 interface userUpdateAdminRequest {
-
-    type : userActionType.USER_UPDATE_ADMIN_REQUEST,
-    payload?: any
+  type: userActionType.USER_UPDATE_ADMIN_REQUEST;
+  payload?: any;
 }
 
 interface userUpdateAdminSuccess {
-
-    type : userActionType.USER_UPATE_ADMIN_SUCCESS
-    payload?: any
+  type: userActionType.USER_UPATE_ADMIN_SUCCESS;
+  payload?: any;
 }
 
 interface userUpdateAdminFail {
-
-    type : userActionType.USER_UPATE_ADMIN_FAIL
-    payload?: any
+  type: userActionType.USER_UPATE_ADMIN_FAIL;
+  payload?: any;
 }
 
-
-
-export type Action = userLoginRequest | userLoginSuccess | userLoginFail | userSignupRequest | userSignupSuccess | userSignupFail | courseAssignRequest | courseAssignSuccess | courseAssignFail | courseDeleteFromUserRequest | courseDeleteFromUserSuccess | courseDeleteFromUserFail | courseDeleteRequest | courseDeleteSuccess | courseDeleteFail | usersListRequest | usersListSuccess | usersListFail | getProjectsofUserRequest | getProjectsofUserSuccess | getProjectsofUserFail | getALLNotAssignedRequest | getAllNotAssignedSuccess | getAllNotAssignedFail | assignProjectToUserFail | assignProjectToUserRequest | assignProjectToUserSuccess | addProjectRequest | addProjectSuccess | addProjectFail | setAlertype | removeAlerttype | userUpdateAdminRequest | userUpdateAdminSuccess | userUpdateAdminFail
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+interface deleteUserRequest {
+  type: userActionType.DELETE_USER_REQUEST;
+
+  payload?: any;
+}
+
+interface deleteUserSuccess {
+  type: userActionType.DELETE_USER_SUCCESS;
+  payload?: any;
+}
+
+interface deleteUserFail {
+  type: userActionType.DELETE_USER_FAIL;
+
+  payload?:any
+}
+
+interface userinforequest {
+  type: userActionType.USER_INFO_REQUEST;
+
+  payload?: any;
+}
+
+interface userinfosuccess {
+  type: userActionType.USER_INFO_SUCCESS;
+  payload?: any;
+}
+
+interface userinfofail {
+  type: userActionType.USER_INFO_FAIL;
+
+  payload?: any;
+}
+
+export type Action =
+  | userLoginRequest
+  | userLoginSuccess
+  | userLoginFail
+  | userSignupRequest
+  | userSignupSuccess
+  | userSignupFail
+  | courseAssignRequest
+  | courseAssignSuccess
+  | courseAssignFail
+  | courseDeleteFromUserRequest
+  | courseDeleteFromUserSuccess
+  | courseDeleteFromUserFail
+  | courseDeleteRequest
+  | courseDeleteSuccess
+  | courseDeleteFail
+  | usersListRequest
+  | usersListSuccess
+  | usersListFail
+  | getProjectsofUserRequest
+  | getProjectsofUserSuccess
+  | getProjectsofUserFail
+  | getALLNotAssignedRequest
+  | getAllNotAssignedSuccess
+  | getAllNotAssignedFail
+  | assignProjectToUserFail
+  | assignProjectToUserRequest
+  | assignProjectToUserSuccess
+  | addProjectRequest
+  | addProjectSuccess
+  | addProjectFail
+  | setAlertype
+  | removeAlerttype
+  | userUpdateAdminRequest
+  | userUpdateAdminSuccess
+  | userUpdateAdminFail
+  | deleteUserRequest
+  | deleteUserSuccess
+  | deleteUserFail
+  | userinforequest
+  | userinfosuccess
+  | userinfofail;

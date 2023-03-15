@@ -374,6 +374,40 @@ export const userSignupFailAction: any= () => {
                 }
         }
 
+        export const deleteUserActionRequest : any = (id : string) => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.DELETE_USER_REQUEST,
+
+                        payload : {id}
+                    })
+                }
+        }
+
+        export const deleteUserActionSuccess : any = () => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.DELETE_USER_SUCCESS
+                    })
+                }
+
+        }
+
+        export const deleteUserActionFail : any = () => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.DELETE_USER_FAIL
+                    })
+                }
+
+        }
+
         
         export const userUpdateAdminActionSuccess : any = () => {
 
@@ -399,8 +433,46 @@ export const userSignupFailAction: any= () => {
                     })
                 }
         }
-        
-        
+
+        export const userinfoRequest : any = (id : string) => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.USER_INFO_REQUEST,
+
+                        payload : {id}
+                        
+                    })
+                }
+        }
+
+        export const userinfoFail : any = () => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.USER_INFO_FAIL
+                        
+                    })
+                }
+        }
+
+        export const userinfoSuccess : any = (datas : any) => {
+
+            return (dispatch: Dispatch<Action>) => {
+                dispatch({
+                        
+                        type: userActionType.USER_INFO_SUCCESS,
+
+                        payload : datas
+                        
+                    })
+                }
+
+        }
+
+       
 
 
 

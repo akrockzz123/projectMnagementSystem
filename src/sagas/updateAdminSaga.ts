@@ -94,7 +94,7 @@ function* workupdateadminSaga(action: Action) : any{
     }
     catch(err) {
 
-        yield put(userUpdateAdminActionFail)
+        yield put({type : userActionType.USER_INFO_FAIL})
     }
 }
  function* watchupdateadminSaga() {

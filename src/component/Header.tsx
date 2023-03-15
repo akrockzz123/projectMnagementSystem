@@ -4,7 +4,7 @@ import "../style/login.css";
 import { useEffect, useState } from "react";
 import { useNavigation } from "react-router-dom";
 
-import { Userinformation } from "../models/model_type";
+//import { Userinformation } from "../models/model_type";
 
 import Form, { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 

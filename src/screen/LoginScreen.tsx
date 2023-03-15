@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -8,11 +8,12 @@ import Alert from "react-bootstrap/Alert";
 
 //import { useNavigate } from 'react-router-dom'
 
-import { alertset, userLoginRequestAction } from '../state/action-creators'
+import { alertset, userinfoRequest, userLoginRequestAction, userLoginSuccessAction } from '../state/action-creators'
 import { useAppSelector } from '../Types'
 
 import Alerts from './Alertscreen'
 
+import {Alertshow} from '../component/AlertShow';
 type Props = {}
 
 function LoginScreen({}: Props) {
@@ -25,13 +26,30 @@ function LoginScreen({}: Props) {
 
     const [errorss,setErrorss] = useState(false)
 
+    const [successLogin,setSuccessLogin] = useState(false)
+
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
 
     const {success, loading,error,message,userId,userName} = useAppSelector(state => state.usersReducer)
 
+    const {loadinguserinfo,successuserinfo,usersData} = useAppSelector(state => state.userinfoReducer)
     const alertdata : []= useAppSelector(state => state.alertReducer)
+
+    console.log("heyyy",error,loadinguserinfo,usersData)
+
+    const userval = localStorage.getItem('userdata')
+
+    if(userval)
+    {
+      navigate('/users')
+    }
+    // if(success)
+    // {
+    //   setSuccessLogin(true)
+    // }
+
     const emailFunc = (em : string) => {
 
         setEmail(em)
@@ -62,17 +80,32 @@ function LoginScreen({}: Props) {
       dispatch(userLoginRequestAction(email,password))
     }
 
-    if(success)
-    {
-      dispatch(alertset("successfully logged in", "success"))
-    }
+    // if(success)
+    // {
+    //   dispatch(alertset("successfully logged in", "success"))
+    // }
 
     
     const submitHandlerFunc = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
         e.preventDefault()
-        
+
+
+        console.log(error)
+
+      //  useEffect(() => {
+
+      //   const vb : string | null = localStorage.getItem('userdata')
+
+      //   if(vb != null)
+      //   {
+      //     var obj = JSON.parse(vb)
+
+
+      //   }
        
+
+      //  },[])
 
         if(email.length > 0 && (password.length >= 6))
         {
@@ -80,19 +113,48 @@ function LoginScreen({}: Props) {
         }
         else{
 
-            setErrorss(true)
+            //setErrorss(true)
         }
     }
+
+    if(success)
+    {
+      const obj = {
+
+        userId : userId,
+
+        userName : userName
+      }
+
+       const userdata = JSON.stringify(obj)
+
+       localStorage.setItem('userdata', userdata)
+
+       //dispatch(userinfoRequest(userId))
+
+       //dispatch(userLoginSuccessAction())
+
+
+       setTimeout(() => {
+         navigate('/users')
+      }, 2000);
+
+
+    }
+
+    const arr  = {"msgtype" : "success", "msg" : `Hi ${userName} welcome !!`}
+
+    const arr2 = {"msgtype" : "danger", "msg" : "username or password invalid"}
+
     
   return (
    <>
-    {alertdata.length > 0 && (
-         <Alert variant="success" style={{ width: "42rem", marginTop: "100px" }}>
-         <Alert.Heading>
-           This is a success alert which has green background
-         </Alert.Heading>
-       </Alert>
-    )},
+    {
+       success ? <Alertshow arrs = {arr} /> : <div></div>
+    },
+    {
+       error && !loading && !success ? <Alertshow arrs = {arr2} /> : <div></div>
+    },
     <Form style = {{marginTop : '100px'}}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>

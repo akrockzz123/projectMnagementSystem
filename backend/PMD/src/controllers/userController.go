@@ -3,11 +3,14 @@ package controllers
 import (
 	"PMD/model"
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"strconv"
+	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
 
@@ -215,10 +218,27 @@ func Login(c *gin.Context) {
 		return
 	}
 	if u.User_id > 0 {
+
+		claims := jwt.MapClaims{
+			"username": auth.Username,
+			"password": auth.Password,
+			"userId":   u.User_id,
+			"exp":      time.Now().Add(time.Hour * 24).Unix(), // Token expires after 24 hours
+		}
+
+		// Create a new token object with the claims and signing method
+		token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+		signedToken, err1 := token.SignedString([]byte("12356"))
+
+		fmt.Println(err1)
+
 		c.JSON(http.StatusOK, gin.H{
 			"message":  "Welcome user!",
 			"userId":   u.User_id,
 			"userName": u.Username,
+			"role":     u.Role,
+			"token":    signedToken,
 		})
 
 	}

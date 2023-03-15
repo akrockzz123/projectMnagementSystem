@@ -12,6 +12,8 @@ import { courseAddReducer } from './courseAddReducer'
 import { alertReducer } from './AlertReducer'
 import { userUpdateAdminReducers } from './userUpdateAdmin'
 
+import { userInfoReducer } from './userInfoReducer'
+
 export const reducer = combineReducers({
 
     courseReducer : courseAssignReducer,
@@ -25,6 +27,8 @@ export const reducer = combineReducers({
 
     alertReducer : alertReducer,
 
-    userUpdateAdminReducer : userUpdateAdminReducers
+    userUpdateAdminReducer : userUpdateAdminReducers,
+
+    userinfoReducer : userInfoReducer
 
 })

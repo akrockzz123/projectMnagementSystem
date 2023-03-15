@@ -40,7 +40,7 @@ export const courseAddReducer = (_state: addProjectState = initialState, action 
             return {
                 ..._state,
 
-                loadingAssign: true
+                loadingAddCourse: true
             }
         break;
 
@@ -49,9 +49,9 @@ export const courseAddReducer = (_state: addProjectState = initialState, action 
             return {
                 ..._state,
 
-                loadingAssign : false,
+                loadingAddCourse: false,
 
-                successAssign: true
+                successAddCourse: true
             }
         break;
 
@@ -60,9 +60,9 @@ export const courseAddReducer = (_state: addProjectState = initialState, action 
 
                 ..._state,
 
-                successAssign: false,
+                successAddCourse: false,
 
-                errorAssign: true
+                errorAddCourse: true
             }
         break;
 

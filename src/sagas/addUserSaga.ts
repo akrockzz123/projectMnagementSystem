@@ -108,6 +108,4 @@ function* workadduserSaga(action: Action) : any{
 
 export const AdduserSaga = watchadduserSaga;
 
-function dispatch(arg0: { type: userActionType; }) {
-    throw new Error('Function not implemented.');
-}
+

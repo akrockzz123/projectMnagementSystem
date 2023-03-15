@@ -36,7 +36,7 @@ const fetchUserList  = async () => {
             },
         }
     
-        const { data } = await axios.get('http://localhost:8080/user/all')
+        const { data } = await axios.get('/user/all')
 
         return data
 

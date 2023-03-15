@@ -15,7 +15,9 @@ type userstate = {
 
     success: boolean,
 
-    error: {},
+    error: boolean,
+
+    role: "",
     users : [],
 
     usersLoading : boolean,
@@ -35,8 +37,9 @@ const initialState : userstate = {
 
     success: false,
 
-    error: {},
+    error: false,
 
+    role: "",
     users : [],
 
     usersLoading : true,
@@ -115,7 +118,9 @@ export const userLoginReducers = (_state: userstate = initialState, action : Act
 
                 userId : action.payload.userId,
             
-                userName : action.payload.userName
+                userName : action.payload.userName,
+
+                role: action.payload.role
                 
             }
         break;
@@ -127,7 +132,9 @@ export const userLoginReducers = (_state: userstate = initialState, action : Act
 
                 loading: false,
 
-                success: false
+                success: false,
+
+                error : true
 
             }
         break;
@@ -140,6 +147,7 @@ export const userLoginReducers = (_state: userstate = initialState, action : Act
         case userActionType.USERS_LIST_SUCCESS :
             return {
 
+                ..._state,
                 usersLoading : false,
 
                 users : action.payload,
@@ -150,7 +158,8 @@ export const userLoginReducers = (_state: userstate = initialState, action : Act
 
         case userActionType.USERS_LIST_FAIL :
             return {
-                
+                usersLoading:false,
+                successUsers:false,
                 errorusers : true
             }
         break;
