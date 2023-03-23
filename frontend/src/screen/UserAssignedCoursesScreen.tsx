@@ -65,31 +65,33 @@ return (
   <div style = {{marginTop : '100px'}}>
   
   
-  {loadingUserCourse ? <Loading /> : <Table striped bordered hover responsive className='table-sm' style = {{marginTop : '100px'}}>
-    
-      <thead>
-        <tr>
-          
-          <th>Project ID</th>
-          <th>Project Name</th>
-          <th>Assigneed ID</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {userCourses.map((item : any, index : any) => (
-          <tr key={index}>
-            <td>{item.project_id}</td>
-            <td>{item.name}</td>
-            <td>{item.assignee_id}</td>
-            <td>{item.status}</td>
-          </tr>
-        ))}
-      </tbody>
-   
-    </Table>}
+  <h1 className="text-white bg-dark text-center mb-3"> Assigned Projects</h1>
+      {loadingUserCourse ? (
+        <Loading />
+      ) : (
+        <table className="table table-info table-striped">
+          <thead>
+            <tr>
+              <th>Project ID</th>
+              <th>Project Name</th>
+              <th>Assigneed ID</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {userCourses.map((item: any, index: any) => (
+              <tr key={index}>
+                <td>{item.project_id}</td>
+                <td>{item.name}</td>
+                <td>{item.assignee_id}</td>
+                <td>{item.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
 
-    {<Button variant = 'success' onClick = {navigateHandler}>Go back</Button>}
+    {<button className="btn btn-success" onClick = {navigateHandler}>Go back</button>}
   </div>
 );
 }

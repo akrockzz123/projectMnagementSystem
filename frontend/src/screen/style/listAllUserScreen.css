@@ -1,0 +1,12 @@
+.listAllUserPage{
+    height: 100vh;
+
+}
+.listUser {
+    width: 100vh;
+    height: 100vh;
+    padding: 20px;
+    border-radius: 5px;
+    color: rgb(3, 56, 49);
+    background-color: rgb(191, 192, 123);
+}

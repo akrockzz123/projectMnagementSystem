@@ -15,18 +15,18 @@ type Props = {
 
 const NavBarComponent : any = (props: Props) => {
   return (
-    <div>
-    <Navbar bg="dark" variant="dark"  sticky = "top" style = {{marginTop : '20px'}}>
-      <Navbar.Brand >Welcome {props.username} !!</Navbar.Brand>
-          <Nav className="me-auto">
+     <div>
+    <nav className="navbar fixed-top align-items-center justify-content-center navbar-expand-lg navbar-light mx-auto p-2" style={{backgroundColor:"#e3f2fd"}}>
+      <div className="navbar-brand ">Welcome {props.username} !!</div>
+          <Nav className="me-auto ">
             <Nav.Link><Button onClick = {props.showusers}>Show All Users</Button></Nav.Link>
-            {props.role == 'Admin' && <Nav.Link ><Button onClick = {props.addUser}>Add User</Button></Nav.Link>},
-            {props.role == 'Admin' && <Nav.Link><Button onClick = {props.addProject}>Add Project</Button></Nav.Link> }
+            {props.role === 'Admin' && <Nav.Link ><Button onClick = {props.addUser}>Add User</Button></Nav.Link>}
+            {props.role === 'Admin' && <Nav.Link><Button onClick = {props.addProject}>Add Project</Button></Nav.Link> }
             <Nav.Link><Button onClick = {props.AssignProject}>Assigned Project</Button></Nav.Link>
             <Nav.Link><Button variant = 'danger' onClick = {props.LogoutHandler}>Logout</Button></Nav.Link>
           </Nav>
         
-      </Navbar>
+      </nav>
 
     </div>
   )
