@@ -1,5 +1,4 @@
 
-
 import * as React from 'react';
 import { useEffect } from 'react';
 import { Alert, Button, Table } from 'react-bootstrap';
@@ -97,20 +96,16 @@ const ProjectsOfUser: React.FunctionComponent<IAppProps> = (props) => {
       console.log('here')
       navigate('/navigate')
     }
-
-
   }, [])
 
 
   useEffect(() => {
-
     dispatch(NotActiveProjectRequest())
   }, [])
 
   const userids = useParams()
 
   const ids = userids.id
-
 
   //const notassigned: courseStates = useAppSelector(state => state.courseNotAssignReducer)
 

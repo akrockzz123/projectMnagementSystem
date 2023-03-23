@@ -64,9 +64,6 @@ function LoginScreen({ }: Props) {
   }
 
   const adminFunc = (che: string) => {
-
-
-
     setIsAdmin(!isAdmin)
   }
 

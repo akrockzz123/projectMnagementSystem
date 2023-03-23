@@ -139,7 +139,7 @@ return (
   {errorss ? <h5 style = {{color : 'red'}}>Please enter email and password correctly</h5> : <div></div>}
   <div className="addUserPage position-relative bg-light d-flex align-items-center justify-content-center w-100">
       <div className="addUser">
-        <h1 className="mb-3">Add User</h1>
+        <h3 className="mb-3">Add User</h3>
         <form className="needs-validation">
           <div className="form-group was-validated mb-2">
             <label htmlFor="userName" className="form-label">

@@ -17,13 +17,13 @@ const NavBarComponent : any = (props: Props) => {
   return (
      <div>
     <nav className="navbar fixed-top align-items-center justify-content-center navbar-expand-lg navbar-light mx-auto p-2" style={{backgroundColor:"#e3f2fd"}}>
-      <div className="navbar-brand ">Welcome {props.username} !!</div>
+      <div className="navbar-brand ">Welcome <span className="text-uppercase"> {props.username}</span> !!</div>
           <Nav className="me-auto ">
-            <Nav.Link><Button onClick = {props.showusers}>Show All Users</Button></Nav.Link>
-            {props.role === 'Admin' && <Nav.Link ><Button onClick = {props.addUser}>Add User</Button></Nav.Link>}
-            {props.role === 'Admin' && <Nav.Link><Button onClick = {props.addProject}>Add Project</Button></Nav.Link> }
-            <Nav.Link><Button onClick = {props.AssignProject}>Assigned Project</Button></Nav.Link>
-            <Nav.Link><Button variant = 'danger' onClick = {props.LogoutHandler}>Logout</Button></Nav.Link>
+            <Nav.Link><button className="btn btn-light" onClick = {props.showusers}>Show All Users</button></Nav.Link>
+            {props.role === 'Admin' && <Nav.Link ><button className="btn btn-light" onClick = {props.addUser}>Add User</button></Nav.Link>}
+            {props.role === 'Admin' && <Nav.Link><button  className="btn btn-light" onClick = {props.addProject}>Add Project</button></Nav.Link> }
+            <Nav.Link><button className="btn btn-light" onClick = {props.AssignProject}>Assigned Project</button></Nav.Link>
+            <Nav.Link><button className="btn btn-danger" onClick = {props.LogoutHandler}>Logout</button></Nav.Link>
           </Nav>
         
       </nav>
