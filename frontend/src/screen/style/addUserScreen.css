@@ -1,0 +1,12 @@
+.addUserPage{
+    height: 100vh;
+
+}
+.addUser {
+    width: 300px;
+    height: min-content;
+    padding: 20px;
+    border-radius: 5px;
+    color: rgb(251, 255, 254);
+    background-color: rgb(190, 183, 194);
+}

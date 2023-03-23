@@ -166,10 +166,10 @@ const NavigateScreen: React.FunctionComponent<IAppProps> = (props) => {
 
       
       <div>
-         {val == 1 && <ListAllUsersScreen/>}
-         {val == 2 && <AddUserScreen/> }
-         {val == 3 && <AddProjectScreen/>}
-         {val == 4 && <UserCoursAssignedScreen/>}
+         {val === 1 && <ListAllUsersScreen/>}
+         {val === 2 && <AddUserScreen/> }
+         {val === 3 && <AddProjectScreen/>}
+         {val === 4 && <UserCoursAssignedScreen/>}
       </div>
         </div>
     );

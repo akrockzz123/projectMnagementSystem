@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div>
-      <Header/>
+     
       <Container>
        <Routes>
         <Route path = '/' element = {<HomeScreen/>} />

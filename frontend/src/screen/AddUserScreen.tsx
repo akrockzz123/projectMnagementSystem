@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import './style/addUserScreen.css'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Alertshow } from '../component/AlertShow';
@@ -141,46 +142,88 @@ return (
   {successSignup && !loadingSignup && <Alertshow arrs = {arr}/>},
   {errorSignup && !successSignup && !loadingSignup && <Alertshow arrs = {arr2}/>},
   {errorss ? <h5 style = {{color : 'red'}}>Please enter email and password correctly</h5> : <div></div>}
-
-  <Form style = {{marginTop : '100px'}}>
-    <Form.Group className="mb-3" controlId="fullName">
-
-      <Form.Label>user name</Form.Label>
-      <Form.Control type="text" placeholder="Enter your fullname"  onChange = {(event) => usernameFunc(event.target.value)}/>
-      <Form.Text className="text-muted">
-  
-      </Form.Text>
-    </Form.Group>
-    <Form.Group className="mb-3" controlId="formBasicEmail">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control type="email" placeholder="Enter email"  onChange = {(event) => emailFunc(event.target.value)}/>
-      
-      <Form.Text className="text-muted">
-       
-      </Form.Text>
-    </Form.Group>
-
-    <Form.Group className="mb-3" controlId="formBasicPassword">
-      <Form.Label>Password</Form.Label>
-      <Form.Control type="password" placeholder="Password"  onChange = {(event) => passFunc(event.target.value)}/>
-    </Form.Group>
-    <Form.Group className="mb-3" controlId="formBasicCheckbox" style = {{margin : '2px'}}>
-      <Form.Check type="radio" label="Admin" onChange = {(event) => adminFunc(event.target.value)} checked = {isAdmin}/>
-    </Form.Group>
-
-    <Form.Group className="mb-3" controlId="formBasicCheckbox" style = {{margin : '2px'}}>
-      <Form.Check type="radio" label="User" onChange = {(event) => userFunc(event.target.value)} checked = {!isAdmin}/>
-    </Form.Group>
-
-    <Button onClick = {submitHandlerFunc}>Submit</Button>
-    
-    
-    <br/>
-    <br/>
-   
-  
-  </Form>
-  </>
+  <div className="addUserPage position-relative bg-light d-flex align-items-center justify-content-center w-100">
+      <div className="addUser">
+        <h1 className="mb-3">Add User</h1>
+        <form className="needs-validation">
+          <div className="form-group was-validated mb-2">
+            <label htmlFor="userName" className="form-label">
+              UserName :
+            </label>
+            <input
+              type="text"
+              id="userName"
+              className="form-control"
+              onChange = {(event) => usernameFunc(event.target.value)}
+              required
+            />
+            <div className="invalid-feedback">
+              Please enter your username
+              </div>
+            
+          </div>
+          <div className="form-group was-validated mb-2">
+            <label htmlFor="email" className="form-label">
+              Email :
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="form-control"
+              onChange = {(event) => emailFunc(event.target.value)}
+              required
+            />
+            <div className="invalid-feedback">
+              Please enter your email
+              </div>
+            
+          </div>
+          <div className="form-group  was-validated mb-2">
+            <label htmlFor="password" className="form-label">
+              Password :
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="form-control"
+              onChange = {(event) => passFunc(event.target.value)}
+              required
+            />
+             <div className="invalid-feedback">
+              Please enter your password
+              </div>
+            
+          </div>
+            
+          <div>
+            <label htmlFor="role" className="form-label">
+              Role :
+            </label>
+            <select
+          className="form-select"
+        >
+          <option value="">Select a role</option>
+          <option value="admin" >Admin</option>
+          <option value="user" >User</option>
+        </select>
+            {/* <select className="form-select" aria-label="Default select example">
+              <option value="1">Admin</option>
+              <option value="2"
+               label="User">User</option>
+            </select> */}
+          
+          </div>   
+          <button 
+          type="submit" 
+          className="btn btn-success w-100 mt-2"
+          onClick = {submitHandlerFunc}
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    </>
   );
 };
 

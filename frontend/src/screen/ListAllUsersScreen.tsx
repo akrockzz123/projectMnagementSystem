@@ -204,70 +204,73 @@ const deleteUserHandler : any =(id : string, e : React.MouseEvent<HTMLButtonElem
 
 
   return (
-    
-   
     <div>
-    <br/>
-    <br/>
-
-    <h1>Users</h1>
-    {usersLoading ? <Loading/> : successUsers ? <><Table  striped bordered hover responsive className='table-sm'>
-      <thead>
-        <tr>
-          
-          <th>user_id</th>
-          <th>user Name</th>
-          <th>email</th>
-          <th>Role</th>
-          <th>Assign Project</th>
-          <th>Upgrade Role</th>
-          <th>Remove User</th>
-          <th>Show project</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-          {users.map(u => 
-            <tr key = {u.user_id}>
-              <td>{u.user_id}</td>
-              <td>{u.userName}</td>
-              <td>{u.email}</td>
-              <td>{u.role}</td>
-              <td ><Button variant='primary' onClick = { () => AssignHandler(u.user_id,navigate)}  >Assign</Button> </td>
-              <td>{u.role == "User" ? (<Button onClick = {(e) => updateUserHandler(u.user_id,e)} disabled = {localStorage.getItem('role') !=='Admin'}>Update User</Button>) : (<div></div>)} </td>
-              <td>{u.status == "Active" ? (<Button variant='danger' onClick = { (e) => deleteUserHandler(u.user_id,e)} disabled = {localStorage.getItem('role') !=='Admin'}>Remove</Button>) : (<div></div>)}</td>
-              <td><Button onClick = {() => showProjectofUserHandler(u.user_id)}>Show Project of {u.userName}</Button></td>
-            </tr>
-          )}
-          
-        
-       
-        
-      </tbody>
-    </Table></> : <h1>Error</h1> }
-
-   
+    <br />
+  
+    <h1 className="text-white bg-dark text-center mb-3">Show All Users</h1>
+    {usersLoading ? (
+      <Loading />
+    ) : successUsers ? (
+      <>
+        <table className="table table-info table-striped">
+          <thead>
+            <tr>
+            <th scope="col">UserId</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">AssignProject</th>
+            <th scope="col">Upgrade Role</th>
+            <th scope="col">Delete User</th>
+          </tr>
+          </thead>
+          <tbody>
+            {users.map((u) => (
+              <tr key={u.user_id}>
+                <td>{u.user_id}</td>
+                <td>{u.userName}</td>
+                <td>{u.email}</td>
+                <td>{u.role}</td>
+                <td>
+                  <button className="btn btn-success"
+                    onClick={() => AssignHandler(u.user_id, navigate)}
+                  >
+                    Assign
+                  </button>{" "}
+                </td>
+                <td>
+                  {u.role === "User" ? (
+                    <button className="btn btn-warning" 
+                    onClick={(e) => updateUserHandler(u.user_id, e)}>
+                      Update User
+                    </button>
+                  ) : (
+                    <div></div>
+                  )}{" "}
+                </td>
+                <td>
+                  {u.status === "Active" ? (
+                    <button className="btn btn-danger"
+                      onClick={(e) => deleteUserHandler(u.user_id, e)}
+                    >
+                      Remove
+                    </button>
+                  ) : (
+                    <div></div>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    ) : (
+      <h1>Error</h1>
+    )}
   </div>
     
   )
 }
-
-/*{users.map(user => (
-  <tr key ={user._id}>
-    <td>{user._id}</td>
-    <td>{user.name}</td>
-    <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
-    <td>{user.isAdmin ? (<i className='fas fa-check' style ={{color: 'green'}}></i>) : (<i className='fas fa-times' style ={{color: 'red'}}></i>)}</td>
-    <td>
-      <LinkContainer to = {`/update/${user._id}`}>
-        <Button variant='light' className='btn-sm' >
-          <i className='fas fa-edit'></i>
-        </Button>
-      </LinkContainer>
-      <Button variant='danger' className='btn-sm'></Button>
-    </td>
-  </tr>
-))}*/
 
 
 export default ListAllUsersScreen

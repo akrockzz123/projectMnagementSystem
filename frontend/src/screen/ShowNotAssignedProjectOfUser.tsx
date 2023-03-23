@@ -121,40 +121,58 @@ const ProjectsOfUser: React.FunctionComponent<IAppProps> = (props) => {
 
   return (
     <div>
-
-      {successAssign ? <div>SuccessFully Assigned</div> : errorAssign ? <div>Error in assigning</div> : <div></div>}
-      {course_not_assign_loading ? <Loading /> : course_not_assign_error ? <h1>Error</h1> : (
-
-        <Table striped bordered hover responsive className='table-sm' style={{ marginTop: '40px' }}>
-          <thead>
+   
+    {successAssign ? (
+      <div>SuccessFully Assigned</div>
+    ) : errorAssign ? (
+      <div>Error in assigning</div>
+    ) : (
+      <div></div>
+    )}
+    <h1 className="text-white bg-dark text-center mb-3 "> Assign Projects</h1>
+    {course_not_assign_loading ? (
+      <Loading />
+    ) : course_not_assign_error ? (
+      <h1>Error</h1>
+    ) : (
+      <table className="table table-info table-striped">
+        <thead>
+          <tr>
+            <th>project_id</th>
+            <th> Name</th>
+            <th>Assignee</th>
+            <th>Assign Project</th>
+          </tr>
+        </thead>
+        <tbody>
+          {course_not_assign.map((u:any) => (
             <tr>
+              <td>{u.project_id}</td>
+              <td>{u.name}</td>
+              <td>{u.assignee_id}</td>
 
-              <th>project_id</th>
-              <th> Name</th>
-              <th>Assignee</th>
-
-              <th>Assign Project</th>
+              <td>
+                <button
+                 className="btn btn-success"
+                  onClick={(event) =>
+                    AssignHandler2(
+                      ids,
+                      u.project_id,
+                      navigate,
+                      dispatch,
+                      event
+                    )
+                  }
+                >
+                  Assign
+                </button>{" "}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-
-            {course_not_assign.map((u:any) =>
-              <tr >
-                <td>{u.project_id}</td>
-                <td>{u.name}</td>
-                <td>{u.assignee_id}</td>
-
-                <td ><Button variant='primary' onClick={(event) => AssignHandler2(ids, u.project_id, navigate, dispatch, event)}>Assign</Button> </td>
-              </tr>
-            )}
-
-
-
-          </tbody>
-        </Table>
-      )}
-    </div>
-
+          ))}
+        </tbody>
+      </table>
+    )}
+  </div>
 
   );
 };

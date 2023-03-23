@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import './style/loginScreen.css'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -74,7 +75,7 @@ function LoginScreen({ }: Props) {
     setIsAdmin(!isAdmin)
   }
 
-  const signupHandler = () => {
+  const loginHandler = () => {
 
     dispatch(userLoginRequestAction(username, password))
   }
@@ -110,38 +111,64 @@ function LoginScreen({ }: Props) {
 
   return (
     <>
-      {
-        successLogin ? <Alertshow arrs={arr} /> : <div></div>
-      },
-      {
-        errorLogin && !loadingLogin && !successLogin ? <Alertshow arrs={arr2} /> : <div></div>
-      },
-      <Form style={{ marginTop: '100px' }}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="username" placeholder="username" onChange={(event) => usernameFunc(event.target.value)} />
-
-          <Form.Text className="text-muted">
-
-          </Form.Text>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" onChange={(event) => passFunc(event.target.value)} />
-        </Form.Group>
-
-        {/* <Button variant="primary" type="submit" onClick = {(event) => submitHandlerFunc(event)}>
-        Submit
-      </Button> */}
-        <br />
-        <br />
-        {errorss ? <div style={{ color: 'red' }}>Please enter username and password correctly</div> : <div></div>}
-
-        <Button variant='primary' onClick={signupHandler}>Login</Button>
-
-      </Form>
-    </>
+    {
+      successLogin ? <Alertshow arrs={arr} /> : <div></div>
+    },
+    {
+      errorLogin && !loadingLogin && !successLogin ? <Alertshow arrs={arr2} /> : <div></div>
+    },
+     <div className="loginPage bg-light-medium d-flex align-items-center justify-content-center w-100">
+    <div className="login">
+      <h1 className="mb-3">Login</h1>
+      <form>
+        <div className="form-group was-validated mb-2">
+          <label htmlFor="userName" className="form-label">
+            UserName :
+          </label>
+          <input
+            type="text"
+            id="userName"
+            className="form-control"
+            onChange={(e) => {
+              usernameFunc(e.target.value);
+            }}
+            required
+          />
+           <div className="invalid-feedback">
+            Please enter your username
+            </div>
+          <br />
+        </div>
+        <div className="form-group form-group was-validated  mb-2">
+          <label htmlFor="password" className="form-label">
+           Password :
+          </label>
+          <input
+            type="password"
+            id="password"
+            className="form-control"
+            onChange={(e) => {
+              passFunc(e.target.value);
+            }}
+            required
+          />
+            <div className="invalid-feedback">
+            Please enter your password
+            </div>
+            {errorss ? <div style={{ color: 'red' }}>Please enter username and password correctly</div> : <div></div>}
+          <br />
+        </div>
+        <button 
+        type="submit" 
+        className="btn btn-success block mt-2"
+        onClick={loginHandler}
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+  </>
   )
 }
 

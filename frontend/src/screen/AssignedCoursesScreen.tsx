@@ -33,12 +33,14 @@ const AssignedCoursesScreen = (props: Props) => {
     },[])
   return (
     <div>
-        <>
-  {loadingUserCourse ? <Loading /> : <Table striped bordered hover responsive className='table-sm' style = {{marginTop : '100px'}}>
-    
+    <>
+    <h1 className="text-white bg-dark text-center mb-3"> Assigned Projects</h1>
+  {loadingUserCourse ? (
+    <Loading />
+  ) : (
+    <table className="table table-info table-striped">
       <thead>
         <tr>
-          
           <th>Project ID</th>
           <th>Project Name</th>
           <th>Assigneed ID</th>
@@ -46,7 +48,7 @@ const AssignedCoursesScreen = (props: Props) => {
         </tr>
       </thead>
       <tbody>
-        {userCourses.map((item : any, index : any) => (
+        {userCourses.map((item: any, index: any) => (
           <tr key={index}>
             <td>{item.project_id}</td>
             <td>{item.name}</td>
@@ -55,12 +57,12 @@ const AssignedCoursesScreen = (props: Props) => {
           </tr>
         ))}
       </tbody>
-   
-    </Table>}
+    </table>
+  )}
 
-    {<Button variant = 'success' onClick = {navigateHandler}>Go back</Button>}
-  </>
-    </div>
+{<button className="btn btn-success" onClick = {navigateHandler}>Go back</button>}
+</>
+</div>
   )
 }
 
