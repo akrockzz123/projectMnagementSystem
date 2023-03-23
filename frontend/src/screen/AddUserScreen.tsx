@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
 import './style/addUserScreen.css'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -59,7 +58,7 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
     {
        const userRole = localStorage.getItem('userdata')
 
-       if(userRole != 'Admin')
+       if(userRole !== 'Admin')
        {
           navigate('/navigate')
        }
@@ -68,12 +67,6 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
 },[])
 
   console.log(successSignup,"success")
-  // if(success && !loading)
-  // {
-  //   console.log("skjvbsk")
-  //   dispatch(alertset("success added","success"))
-
-  // }
   const usernameFunc = (e : string) => {
 
     setUsername(e)
@@ -201,12 +194,6 @@ return (
           <option value="admin" >Admin</option>
           <option value="user" >User</option>
         </select>
-            {/* <select className="form-select" aria-label="Default select example">
-              <option value="1">Admin</option>
-              <option value="2"
-               label="User">User</option>
-            </select> */}
-          
           </div>   
           <button 
           type="submit" 

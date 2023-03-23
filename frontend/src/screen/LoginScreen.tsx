@@ -34,6 +34,7 @@ function LoginScreen({ }: Props) {
 
 
   const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
 
   const [password, setPassword] = useState('')
 
@@ -50,9 +51,9 @@ function LoginScreen({ }: Props) {
     return state.userReducer;
 })
 
-  const usernameFunc = (em: string) => {
+  const useremailFunc = (em: string) => {
 
-    setUsername(em)
+    setEmail(em)
 
     setErrorss(false)
   }
@@ -119,15 +120,15 @@ function LoginScreen({ }: Props) {
       <h1 className="mb-3">Login</h1>
       <form>
         <div className="form-group was-validated mb-2">
-          <label htmlFor="userName" className="form-label">
-            UserName :
+          <label htmlFor="userEmail" className="form-label">
+            UserEmail :
           </label>
           <input
-            type="text"
-            id="userName"
+            type="email"
+            id="userEmail"
             className="form-control"
             onChange={(e) => {
-              usernameFunc(e.target.value);
+              useremailFunc(e.target.value);
             }}
             required
           />

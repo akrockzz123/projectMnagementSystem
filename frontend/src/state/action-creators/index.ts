@@ -6,7 +6,7 @@ import { alertActionType, courseActionType, userActionType} from "../action-type
 
 //import { v4 as uuidv4 } from 'uuid';
 
-export const userLoginRequestAction: any= (username : string, password: string) => {
+export const userLoginRequestAction: any= (email : string, password: string) => {
 
     return (dispatch: Dispatch<Action>) => {
 
@@ -14,7 +14,7 @@ export const userLoginRequestAction: any= (username : string, password: string) 
 
             type: userActionType.USER_LOGIN_REQUEST,
 
-            payload : {user :username, pass: password}
+            payload : {email :email, pass: password}
       })
     }
 }
