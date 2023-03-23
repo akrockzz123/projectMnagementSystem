@@ -1,13 +1,4 @@
 
-
-
-
-
-
-
-
-
-
 import { takeEvery, take , select, call,put, fork} from  'redux-saga/effects';
 
 //import { USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,USER_LOGIN_FAIL } from '../constants';

@@ -16,7 +16,7 @@ type Props = {
 const NavBarComponent : any = (props: Props) => {
   return (
      <div>
-    <nav className="navbar fixed-top align-items-center justify-content-center navbar-expand-lg navbar-light mx-auto p-2" style={{backgroundColor:"#e3f2fd"}}>
+    <nav className="navbar fixed-top align-items-center justify-content-center navbar-expand-lg navbar-light mx-auto p-2" style={{backgroundColor:"#62B6B7"}}>
       <div className="navbar-brand ">Welcome <span className="text-uppercase"> {props.username}</span> !!</div>
           <Nav className="me-auto ">
             <Nav.Link><button className="btn btn-light" onClick = {props.showusers}>Show All Users</button></Nav.Link>

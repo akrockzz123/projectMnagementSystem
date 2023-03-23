@@ -2,7 +2,6 @@
 
 import { takeEvery, take , select, call,put, fork} from  'redux-saga/effects';
 
-
 import { userActionType } from '../state/action-types';
 
 import axios from 'axios';
@@ -26,9 +25,7 @@ const fetchUser  = async (username: string,password: string) => {
             },
         }
 
-        
-    
-        const { data } = await axios.post('/user/login',{username,password},config)
+            const { data } = await axios.post('/user/login',{username,password},config)
 
         return data
 

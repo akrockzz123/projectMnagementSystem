@@ -37,7 +37,7 @@ const addUser  = async (username : string,email: string,password: string,role : 
             },
         }
 
-        const status : string = "Inactive"
+        const status : string = "Active"
 
         const { data } = await axios.post('/user/add',{username,email,role,status,password},config)
 
@@ -53,17 +53,7 @@ const addUser  = async (username : string,email: string,password: string,role : 
 
 
 }
-/*function* handleLoginAction(action: Action) {
-    try {
 
-       const data = yield call(fetchUser);
-
-        
-    } catch(error) {
-
-    }
-
-}*/
 
 
 
