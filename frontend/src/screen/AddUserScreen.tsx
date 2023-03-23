@@ -80,11 +80,6 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
 
     setErrorss(false)
   }
-  const fullNameFunc = (em : string) => {
-    setFullName(em)
-
-    setErrorss(false)
-  }
 
 
   const emailFunc = (em : string) => {
