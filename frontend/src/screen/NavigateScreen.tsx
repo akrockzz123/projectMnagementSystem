@@ -107,7 +107,7 @@ const NavigateScreen: React.FunctionComponent<IAppProps> = (props) => {
        
 
       <Container>
-       <NavBarComponent username = {usersData.userName} addUser = {addUser} addProject = {addProject} AssignProject = {AssignProject} LogoutHandler = {LogoutHandler} role = {role} showusers = {showusers} style = {{position : 'fixed'}}/>
+       <NavBarComponent username = {usersData.userName} addUser = {addUser} addProject = {addProject} AssignProject = {AssignProject} LogoutHandler = {LogoutHandler} role = {role} showusers = {showusers} style = {{position : 'fixed'}} search/>
       </Container>
 
       

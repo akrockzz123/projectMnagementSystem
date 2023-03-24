@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-
+import NavBarComponent from '../component/NavBarComponent'
 import { LinkContainer } from 'react-router-bootstrap'
 import Message from '../component/Message'
 
@@ -96,11 +96,9 @@ function ListAllUsersScreen({}: Props) {
 
   const ids = useParams()
 
-  const keywords : any = ids.keyword
+  
 
-  const x = JSON.parse(keywords)
-
-  console.log(ids,"avvua",x)
+  //console.log(ids,"avvua",x)
 
   const showProjectofUserHandler : any = (id : any) => {
 
@@ -217,7 +215,7 @@ const link1 = <div>
   <Loading />
 ) : successUsers ? (
   <>
-    <table className="table table-info table-striped">
+    <table className="table table-info table-striped m-5">
       <thead>
         <tr>
         <th scope="col">UserId</th>
@@ -275,17 +273,24 @@ const link1 = <div>
 </div>
 
 
-            
-    
-const link2 =  usersLoading && keywords != 'undefined' ? (<Loading/>) : users.map((u) => {
+const keywords : any = ids.keyword
 
+console.log(typeof(keywords),"asdfghj")
+    
+const link2 =  usersLoading && typeof(keywords) != undefined  ? (<Loading/>) : users.map((u) => {
+
+  if(typeof(keywords) === "undefined")
+  {
+    return
+  }
   var found = 0;
 
+  const x = JSON.parse(keywords)
 
   if(u.user_id == x)
   {
     return (
-      <table className="table table-info table-striped">
+      <table className="table table-info table-striped m-5" >
       <thead>
         <tr>
         <th scope="col">UserId</th>
@@ -339,13 +344,14 @@ const link2 =  usersLoading && keywords != 'undefined' ? (<Loading/>) : users.ma
       )
   }
   
-}
+} 
 )
 
 
 return (
   <>
-   {keywords ? link2 : link1 }
+  <NavBarComponent style = {{marginBotom : '10px'}}/>,
+   {typeof(keywords) !== "undefined" ? link2 : link1 }
   </>
 )
 }
