@@ -23,7 +23,7 @@ const fetchUserinfo  = async (id : string) => {
 
     try {
         
-
+        console.log('gwdgjwdghjhj');
         const { data } = await axios.get(`/user/${id}`)
 
         return data
