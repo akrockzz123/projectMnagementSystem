@@ -65,7 +65,14 @@ type courseState = {
 
     course_not_assign_success : boolean,
 
-    course_not_assign_error : {}
+    course_not_assign_error : {},
+
+    get_project_loading : boolean,
+
+    get_project_success : boolean,
+
+    get_project_error : boolean,
+    get_projects : {}
 }
 
 
@@ -118,8 +125,12 @@ const initialState : courseState = {
     course_not_assign_success: false,
 
     course_not_assign_error: false,
-    course_not_assign: [user0]
+    course_not_assign: [user0],
 
+    get_project_loading : true,
+    get_project_success : false,
+    get_project_error : false,
+    get_projects : {}
     
 
 }
@@ -296,6 +307,30 @@ export const coursesReducer  = (_state: courseState = initialState, action : Act
             }
         break;
 
+        case courseActionType.GET_PROJECT_REQUEST :
+            return {
+                ..._state,
+                get_project_loading: false,
+
+            }
+        break;
+
+        case courseActionType.GET_PROJECT_SUCCESS :
+            return {
+                ..._state,
+                get_project_loading: false,
+                get_project_success : true,
+                get_projects : action.payload
+            }
+        break;
+        case courseActionType.GET_PROJECT_FAIL :
+            return {
+               ..._state,
+                get_project_loading: false,
+                get_project_success : false,
+                get_project_error : true
+            }
+        break;
         default : 
         return initialState
 

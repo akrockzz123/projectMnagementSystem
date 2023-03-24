@@ -12,6 +12,10 @@ type UserProject struct {
 	// Status     string `json:"status"`
 }
 
+func (p *UserProject) TableName() string {
+	return "user_projects"
+}
+
 // func AssignProjectByID(up UserProject) (id int64, err error) {
 // 	o := orm.NewOrm()
 // 	u := User{User_id: up.User_id}

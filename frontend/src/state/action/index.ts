@@ -91,6 +91,26 @@ interface courseDeleteRequest {
   payload?: any;
 }
 
+interface getProjectRequest {
+
+  type : courseActionType.GET_PROJECT_REQUEST
+
+  payload?: any;
+}
+
+interface getProjectSuccess {
+
+  type : courseActionType.GET_PROJECT_SUCCESS;
+
+  payload?: any;
+}
+
+interface getProjectFail {
+
+  type : courseActionType.GET_PROJECT_FAIL;
+  payload?: any;
+}
+
 interface courseDeleteSuccess {
   type: courseActionType.COURSE_DELETE_SUCCESS;
 
@@ -307,6 +327,8 @@ interface userSignupReset {
   payload?: any
 }
 
+
+
 export type Action =
   | userLoginRequest
   | userLoginSuccess
@@ -356,4 +378,7 @@ export type Action =
   | getProjectUserRequest2
   | getProjectUserSuccess2
   | getProjectUserFail2
-  | userSignupReset;
+  | userSignupReset
+  | getProjectRequest
+  | getProjectSuccess
+  | getProjectFail;

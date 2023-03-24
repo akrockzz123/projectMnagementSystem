@@ -18,6 +18,10 @@ import { updateAdminSaga } from "./updateAdminSaga";
 import { userDeleteSaga } from './deleteUserSaga';
 
 import { userinfoSagas } from "./getUserSaga";
+
+import { getCourseSaga } from "./getCourseSaga";
+
+import { courseDeleteSaga } from "./deleteCourseSaga";
 function* watchrootSaga() {}
 
 const rootSaga = function* rootSaga() {
@@ -33,7 +37,9 @@ const rootSaga = function* rootSaga() {
     fork(AddprojectSaga),
     fork(userinfoSagas),
     fork(userDeleteSaga),
-    fork(userCoursesSagas)
+    fork(userCoursesSagas),
+    fork(getCourseSaga),
+    fork(courseDeleteSaga)
   ]);
 };
 

@@ -21,6 +21,7 @@ import ShowProjectOfUser from './screen/ShowNotAssignedProjectOfUser';
 import AddProjectScreen from './screen/AddProjectScreen';
 import NavigateScreen from './screen/NavigateScreen';
 import AssignedCoursesScreen from './screen/AssignedCoursesScreen';
+import DeleteProjectScreen from './screen/DeleteProjectScreen';
 
 function App() {
 
@@ -47,6 +48,8 @@ function App() {
         <Route path = '/navigate' element = {<NavigateScreen/>} />
 
         <Route path = '/user/project/:id' element = {<AssignedCoursesScreen/>} />
+
+        <Route path = '/delete/project' element = {<DeleteProjectScreen/>} />
        
        </Routes>
        </Container>

@@ -543,6 +543,48 @@ export const getProjectsOfUserFailAction : any = ()  => {
         }
 }
 
+export const getProjectsRequest : any = ()  => {
+
+    return (dispatch: Dispatch<Action>) => {
+        dispatch({
+                
+                type: courseActionType.GET_PROJECT_REQUEST
+
+    
+                
+            })
+        }
+}
+
+export const getProjectSuccess : any = ()  => {
+
+    return (dispatch: Dispatch<Action>) => {
+        dispatch({
+                
+                type: courseActionType.GET_PROJECT_SUCCESS
+
+                
+                
+            })
+        }
+    }
+
+    export const getProjectFail : any = ()  => {
+
+        return (dispatch: Dispatch<Action>) => {
+            dispatch({
+                    
+                    type: courseActionType.GET_PROJECT_FAIL
+    
+                    
+                    
+                })
+            }
+        }
+        
+
+
+
 
 
     // get projects of user 
