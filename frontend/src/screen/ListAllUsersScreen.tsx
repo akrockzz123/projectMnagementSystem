@@ -12,7 +12,7 @@ import { useAppSelector } from '../Types'
 import { useDispatch } from 'react-redux'
 import { userinfoRequest, UsersListRequestAction, userUpdateAdminActionRequest, userDeleteRequestAction } from '../state/action-creators'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import Loading from '../component/Loading'
 
@@ -25,6 +25,8 @@ const AssignHandler = (userid : string,navigate : any) => {
   const datas : any = localStorage.getItem('userdata')
 
   const usersdata = JSON.parse(datas)
+
+  const dispatch = useDispatch()
 
   if(usersdata.userId == userid)
   {
@@ -92,8 +94,13 @@ function ListAllUsersScreen({}: Props) {
   
   const navigate = useNavigate()
 
+  const ids = useParams()
 
-  
+  const keywords : any = ids.keyword
+
+  const x = JSON.parse(keywords)
+
+  console.log(ids,"avvua",x)
 
   const showProjectofUserHandler : any = (id : any) => {
 
@@ -202,74 +209,145 @@ const deleteUserHandler : any =(id : string, e : React.MouseEvent<HTMLButtonElem
 
 
 
+const link1 = <div>
+<br />
 
-  return (
-    <div>
-    <br />
-  
-    <h1 className="text-white bg-dark text-center mb-3">Show All Users</h1>
-    {usersLoading ? (
-      <Loading />
-    ) : successUsers ? (
-      <>
-        <table className="table table-info table-striped">
-          <thead>
-            <tr>
-            <th scope="col">UserId</th>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">AssignProject</th>
-            <th scope="col">Upgrade Role</th>
-            <th scope="col">Delete User</th>
+<h1 className="text-white bg-dark text-center mb-3">Show All Users</h1>
+{usersLoading ? (
+  <Loading />
+) : successUsers ? (
+  <>
+    <table className="table table-info table-striped">
+      <thead>
+        <tr>
+        <th scope="col">UserId</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">AssignProject</th>
+        <th scope="col">Upgrade Role</th>
+        <th scope="col">Delete User</th>
+      </tr>
+      </thead>
+      <tbody>
+        {users.map((u) => (
+          <tr key={u.user_id}>
+            <td>{u.user_id}</td>
+            <td>{u.userName}</td>
+            <td>{u.email}</td>
+            <td>{u.role}</td>
+            <td>
+              <button className="btn btn-success"
+                onClick={() => AssignHandler(u.user_id, navigate)}
+              >
+                Assign
+              </button>{" "}
+            </td>
+            <td>
+              {u.role === "User" ? (
+                <button className="btn btn-warning" 
+                onClick={(e) => updateUserHandler(u.user_id, e)}>
+                  Update User
+                </button>
+              ) : (
+                <div></div>
+              )}{" "}
+            </td>
+            <td>
+              {u.status === "Active" ? (
+                <button className="btn btn-danger"
+                  onClick={(e) => deleteUserHandler(u.user_id, e)}
+                >
+                  Remove
+                </button>
+              ) : (
+                <div></div>
+              )}
+            </td>
           </tr>
-          </thead>
-          <tbody>
-            {users.map((u) => (
-              <tr key={u.user_id}>
-                <td>{u.user_id}</td>
-                <td>{u.userName}</td>
-                <td>{u.email}</td>
-                <td>{u.role}</td>
-                <td>
-                  <button className="btn btn-success"
-                    onClick={() => AssignHandler(u.user_id, navigate)}
-                  >
-                    Assign
-                  </button>{" "}
-                </td>
-                <td>
-                  {u.role === "User" ? (
-                    <button className="btn btn-warning" 
-                    onClick={(e) => updateUserHandler(u.user_id, e)}>
-                      Update User
-                    </button>
-                  ) : (
-                    <div></div>
-                  )}{" "}
-                </td>
-                <td>
-                  {u.status === "Active" ? (
-                    <button className="btn btn-danger"
-                      onClick={(e) => deleteUserHandler(u.user_id, e)}
-                    >
-                      Remove
-                    </button>
-                  ) : (
-                    <div></div>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </>
-    ) : (
-      <h1>Error</h1>
-    )}
-  </div>
+        ))}
+      </tbody>
+    </table>
+  </>
+) : (
+  <h1>Error</h1>
+)}
+</div>
+
+
+            
     
-  )
+const link2 =  usersLoading && keywords != 'undefined' ? (<Loading/>) : users.map((u) => {
+
+  var found = 0;
+
+
+  if(u.user_id == x)
+  {
+    return (
+      <table className="table table-info table-striped">
+      <thead>
+        <tr>
+        <th scope="col">UserId</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">AssignProject</th>
+        <th scope="col">Upgrade Role</th>
+        <th scope="col">Delete User</th>
+      </tr>
+      </thead>
+      <tbody>
+        
+          <tr key={u.user_id}>
+            <td>{u.user_id}</td>
+            <td>{u.userName}</td>
+            <td>{u.email}</td>
+            <td>{u.role}</td>
+            <td>
+              <button className="btn btn-success"
+                onClick={() => AssignHandler(u.user_id, navigate)}
+              >
+                Assign
+              </button>{" "}
+            </td>
+            <td>
+              {u.role === "User" ? (
+                <button className="btn btn-warning" 
+                onClick={(e) => updateUserHandler(u.user_id, e)}>
+                  Update User
+                </button>
+              ) : (
+                <div></div>
+              )}{" "}
+            </td>
+            <td>
+              {u.status === "Active" ? (
+                <button className="btn btn-danger"
+                  onClick={(e) => deleteUserHandler(u.user_id, e)}
+                >
+                  Remove
+                </button>
+              ) : (
+                <div></div>
+              )}
+            </td>
+          </tr>
+        
+      </tbody>
+    </table>
+      )
+  }
+  
+}
+)
+
+
+return (
+  <>
+   {keywords ? link2 : link1 }
+  </>
+)
 }
 
 

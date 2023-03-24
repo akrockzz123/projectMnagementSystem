@@ -23,6 +23,10 @@ function App() {
       <Container>
        <Routes>
         <Route path = '/' element = {<HomeScreen/>} />
+
+        <Route path = '/search/:keyword' element = {<ListAllUsersScreen/>} />
+
+        
         <Route path = '/login' element = {<LoginScreen/>} />
 
         <Route path = '/users' element = {<ListAllUsersScreen/>} />
@@ -36,6 +40,8 @@ function App() {
         <Route path = '/navigate' element = {<NavigateScreen/>} />
 
         <Route path = '/user/project/:id' element = {<AssignedCoursesScreen/>} />
+
+       
        
        </Routes>
        </Container>

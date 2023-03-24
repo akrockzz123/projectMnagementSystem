@@ -2,6 +2,8 @@
 import React from 'react'
 import { Button, Nav, Navbar } from 'react-bootstrap'
 
+import SearchBox from './SearchBox'
+
 type Props = {
     username : string,
     showusers : any,
@@ -22,6 +24,8 @@ const NavBarComponent : any = (props: Props) => {
             <Nav.Link><button className="btn btn-light" onClick = {props.showusers}>Show All Users</button></Nav.Link>
             {props.role === 'Admin' && <Nav.Link ><button className="btn btn-light" onClick = {props.addUser}>Add User</button></Nav.Link>}
             {props.role === 'Admin' && <Nav.Link><button  className="btn btn-light" onClick = {props.addProject}>Add Project</button></Nav.Link> }
+
+            <SearchBox/>
             <Nav.Link><button className="btn btn-light" onClick = {props.AssignProject}>Assigned Project</button></Nav.Link>
             <Nav.Link><button className="btn btn-danger" onClick = {props.LogoutHandler}>Logout</button></Nav.Link>
           </Nav>
