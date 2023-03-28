@@ -88,15 +88,15 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
       setPassword(em)
   }
 
-  const adminFunc = (che : string) => {
-      setIsAdmin(!isAdmin)
+  const adminFunc : any = (che : string) => {
+      setIsAdmin(true)
 
       setErrorss(false)
   }
 
-  const userFunc = (che : string) => {
+  const userFunc : any = (che : string) => {
 
-      setIsAdmin(!isAdmin)
+      setIsAdmin(false)
 
       setErrorss(false)
   }
@@ -111,6 +111,7 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
       {
           const str = isAdmin ? "Admin" : "User";
 
+          console.log(str,"bhagwan bacha le")
           dispatch(userSignupRequestAction(username, email,password,str))
       }
       else{
@@ -191,8 +192,8 @@ return (
           className="form-select"
         >
           <option value="">Select a role</option>
-          <option value="admin" >Admin</option>
-          <option value="user" >User</option>
+          <option value="admin" onChange = {adminFunc}>Admin</option>
+          <option value="user" onChange = {userFunc}>User</option>
         </select>
           </div>   
           <button 

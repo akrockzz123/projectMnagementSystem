@@ -38,7 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy" : "npm run build && aws s3 rm s3://crd22mix-pwa-ios.buynsta.com --recursive && aws s3 cp ~/KB/projectMnagementSystem/frontend/build s3://crd22mix-pwa-ios.buynsta.com/ --recursive --acl public-read"
+    "deploy" : "npm run build && aws s3 rm s3://crd22mix-pwa-ios.buynsta.com --recursive && aws s3 cp ~/KB/new_pms/projectMnagementSystem/frontend/build s3://crd22mix-pwa-ios.buynsta.com/ --recursive --acl public-read"
   },
   
   "eslintConfig": {
@@ -61,8 +61,6 @@
   },
   "devDependencies": {
     "@types/react-router-bootstrap": "^0.26.0"
-  },
-
-  "proxy": "http://localhost:8080/"
+  }
 
 }

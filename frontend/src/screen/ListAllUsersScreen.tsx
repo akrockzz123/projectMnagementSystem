@@ -23,41 +23,6 @@ import { useGlobalContext } from '../contexts/globalContext'
 
 
 
-const AssignHandler = (userid : string,navigate : any) => {
-
-  
-
-  const datas : any = localStorage.getItem('userdata')
-
-  const usersdata = JSON.parse(datas)
-
-  const dispatch = useDispatch()
-
-  if(usersdata.userId == userid)
-  {
-
-  }
-  else{
-
-    if(localStorage.getItem('role') != 'Admin')
-    {
-      return
-    }
-  }
-  
-  
-  // const val = JSON.parse(usersall)
-
-
-  // const useridget : any = val.userId
-
-
-
-  console.log("AssignHandler function", userid)
-  
-
-  navigate(`/users/${userid}`)
-}
 
 // type Props = {}
 
@@ -107,13 +72,50 @@ type Props = {
 
 const ListAllUsersScreen : any = (props : Props)  => {
 
+  const dispatch = useDispatch()
+
+const AssignHandler = (userid : string,navigate : any) => {
+
+  
+  
+  const datas : any = localStorage.getItem('userdata')
+
+  const usersdata = JSON.parse(datas)
+
+
+
+  if(usersdata.userId == userid)
+  {
+
+  }
+  else{
+
+    if(localStorage.getItem('role') != 'Admin')
+    {
+      return
+    }
+  }
+  
+  
+  // const val = JSON.parse(usersall)
+
+
+  // const useridget : any = val.userId
+
+
+
+  console.log("AssignHandler function", userid)
+  
+
+  navigate(`/users/${userid}`)
+}
   
   console.log(props,"listalluserscreen")
 
  
   const {username,showUsers,addUser,addProject,AssignProject,LogoutHandler,role} = useGlobalContext()
   
-  console.log(showUsers,"hey aniket wgeuudbq ")
+ 
   const navigate = useNavigate()
 
   const ids = useParams()
@@ -154,7 +156,7 @@ const ListAllUsersScreen : any = (props : Props)  => {
   errorusers : <false></false>
   */
 
-  const dispatch = useDispatch()
+  //const dispatch = useDispatch()
   const usersStates : usersTypesInfo  = useAppSelector((state : any) => state.userReducer)
   const {loadingupdate,successupdate,errorupdate} = useAppSelector((state : any) => state.userReducer)
   const {users,usersLoading ,successUsers,errorusers} = usersStates
@@ -221,7 +223,7 @@ const deleteUserHandler : any =(id : string, e : React.MouseEvent<HTMLButtonElem
   console.log("delete",id)
   dispatch(userDeleteRequestAction(id))
 
-  dispatch(UsersListRequestAction())
+  //dispatch(UsersListRequestAction())
 }
 
 
@@ -251,6 +253,7 @@ const link1 = <div>
       </thead>
       <tbody>
         {users.map((u) => (
+          
           <tr key={u.user_id}>
             <td>{u.user_id}</td>
             <td>{u.userName}</td>
@@ -312,7 +315,8 @@ let link2 =  usersLoading && props.userid != 0  ? (<Loading/>) : users.map((u) =
   {
     found = 1
     return (
-      <table className="table table-info table-striped m-5" >
+      <div style={{marginTop : '130px'}}>
+      <table className="table table-info table-striped " >
       <thead>
         <tr>
         <th scope="col">UserId</th>
@@ -363,6 +367,7 @@ let link2 =  usersLoading && props.userid != 0  ? (<Loading/>) : users.map((u) =
         
       </tbody>
     </table>
+    </div>
       )
   }
   
@@ -371,7 +376,7 @@ let link2 =  usersLoading && props.userid != 0  ? (<Loading/>) : users.map((u) =
 
 if(found == 0)
 {
-  link2 = <Container style = {{ padding : '20px' , textAlign : 'center'}}><h1>User not found</h1></Container>
+  link2 = <Container style = {{ padding : '20px' , textAlign : 'center' , marginTop : '130px'}}><h1>User not found</h1></Container>
 }
 
 

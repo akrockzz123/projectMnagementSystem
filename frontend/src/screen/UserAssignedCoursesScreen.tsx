@@ -73,8 +73,8 @@ return (
           <tbody>
             {userCourses.map((item: any, index: any) => (
               <tr key={index}>
-                <td>{item.project_id}</td>
-                <td>{item.name}</td>
+                <td>{item.Project_id}</td>
+                <td>{item.Project_name}</td>
                 <td>{item.assignee_id}</td>
                 <td>{item.status}</td>
               </tr>

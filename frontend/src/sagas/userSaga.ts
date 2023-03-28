@@ -16,7 +16,7 @@ import { userLoginSuccessAction } from '../state/action-creators';
 import { BASE_URL } from '../constant/environment';
 
 
-const fetchUser  = async (username: string,password: string) => {
+const fetchUser  = async (email: string,password: string) => {
 
     try {
         
@@ -26,7 +26,7 @@ const fetchUser  = async (username: string,password: string) => {
             },
         }
 
-            const { data } = await axios.post(`${BASE_URL}/user/login`,{username,password},config)
+            const { data } = await axios.post(`${BASE_URL}/user/login`,{email,password},config)
 
         return data
 
@@ -42,7 +42,7 @@ function* workuserSaga(action: Action) : any {
 
     try {
 
-        const result = yield call(fetchUser,action.payload.user,action.payload.pass);
+        const result = yield call(fetchUser,action.payload.email,action.payload.pass);
         
         yield put({type : userActionType.USER_LOGIN_SUCCESS, payload : result})
 

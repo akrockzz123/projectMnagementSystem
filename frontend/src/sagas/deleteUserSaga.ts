@@ -63,7 +63,7 @@ function* workdeleteUserSaga(action: Action) : any{
 
         // dispatching a success action with the deleted user id
         
-        yield put(userDeleteSuccessAction)
+        yield put({type : userActionType.USER_DELETE_SUCCESS})
     }
     catch(err) {
         // dispatching a failure action with the error message

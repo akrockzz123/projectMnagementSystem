@@ -58,7 +58,7 @@ useEffect(() => {
  // const types = variants
   return (
     <>
-    { !isHide ? <Alert variant = {str1} style={{ width: "42rem", marginTop: "100px" }}>
+    { !isHide ? <Alert variant = {str1} style={{ width: "42rem", marginTop: "120px" }}>
       <Alert.Heading>
         {str2}
       </Alert.Heading>

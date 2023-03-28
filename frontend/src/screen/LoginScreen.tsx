@@ -105,7 +105,7 @@ function LoginScreen({ }: Props) {
 
   const arr = { "msgtype": "success", "msg": `Hi ${userNameLogin} welcome !!` }
 
-  const arr2 = { "msgtype": "danger", "msg": "username or password invalid" }
+  const arr2 = { "msgtype": "danger", "msg": "email or password invalid" }
 
 
   return (

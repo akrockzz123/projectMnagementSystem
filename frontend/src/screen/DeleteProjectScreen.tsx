@@ -87,6 +87,13 @@ const ListAllProjectScreen : any = (props : Props)  => {
   const dispatch = useDispatch()
   const {get_projects_loading,get_projects_success,get_projects_error,get_projects} = useAppSelector(state => {
 
+    
+    return state.courseReducer
+  })
+
+  const {course_id_to_delete_loading,course_id_to_delete_success,course_id_to_delete_error} = useAppSelector(state => {
+
+    
     return state.courseReducer
   })
 
@@ -101,6 +108,10 @@ const ListAllProjectScreen : any = (props : Props)  => {
     //dispatch(userinfoRequest(userids))
     //dispatch(UsersListRequestAction())
   },[])
+
+  useEffect(() => {
+    
+  },[course_id_to_delete_success])
 
   useEffect(() => {
 

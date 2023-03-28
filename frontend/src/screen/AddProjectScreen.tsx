@@ -91,8 +91,8 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
     }
     const submitHandlerFunc : any = () => {
 
-       console.log(name,assigneeid)
-        dispatch(courseAddRequestAction(name,assigneeid))
+       console.log(name,refInput.current.value)
+        dispatch(courseAddRequestAction(name,refInput.current.value))
 
     }
 
@@ -106,6 +106,8 @@ const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
       console.log(e.target.value,"aniket kumar it is",e.target.innerText)
 
       refInput.current.value = e.target.innerText
+
+      setDis(false)
     }
 
     // if(successAddCourse)

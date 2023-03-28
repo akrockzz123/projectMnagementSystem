@@ -6,12 +6,13 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Loading from '../component/Loading';
-import { alertset, AssignProjectRequest, NotActiveProjectRequest } from '../state/action-creators';
+import { alertset, AssignProjectRequest, getProjectsOfUserRequestAction, NotActiveProjectRequest } from '../state/action-creators';
 import { useAppSelector } from '../Types';
 
 import { useParams } from 'react-router-dom';
 
 import { useLocation } from 'react-router-dom';
+import { Alertshow } from '../component/AlertShow';
 
 
 
@@ -99,9 +100,24 @@ const ProjectsOfUser: React.FunctionComponent<IAppProps> = (props) => {
   }, [])
 
 
+
   useEffect(() => {
+
+    const userdatas : any = localStorage.getItem('userdata')
+
+    const datas = JSON.parse(userdatas)
+
+    const {userId} = datas
+    
+    dispatch(getProjectsOfUserRequestAction(userId))
+    
     dispatch(NotActiveProjectRequest())
+
+   
+
+ 
   }, [])
+
 
   const userids = useParams()
 
@@ -113,17 +129,23 @@ const ProjectsOfUser: React.FunctionComponent<IAppProps> = (props) => {
 
   const { loadingAssign, successAssign, errorAssign } = useAppSelector(state => state.courseReducer)
 
+  const {loadingUserCourse ,successCourse,errorCourse,userCourses} = useAppSelector((state : any) => {
+      
+    return state.getUserAssignedCourseReducer
+  })
+
+  const arr = { "msgtype": "success", "msg": "Course assigned" }
+
+  const arr2 = { "msgtype": "danger", "msg": "Course not assigned" }
+
+  console.log(userCourses,loadingUserCourse,successCourse)
 
   return (
     <div>
    
-    {successAssign ? (
-      <div>SuccessFully Assigned</div>
-    ) : errorAssign ? (
-      <div>Error in assigning</div>
-    ) : (
-      <div></div>
-    )}
+    {successAssign && <Alertshow arrs={arr}/> },
+     
+    {errorAssign && <Alertshow arrs={arr2} />}, 
     <h1 className="text-white bg-dark text-center mb-3 "> Assign Projects</h1>
     {course_not_assign_loading ? (
       <Loading />
@@ -140,7 +162,27 @@ const ProjectsOfUser: React.FunctionComponent<IAppProps> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {course_not_assign.map((u:any) => (
+          {course_not_assign.map((u:any) =>{ 
+            
+            var found = 0
+
+            userCourses.map((u1 : any) => {
+
+              console.log(u.project_id,u1.Project_id)
+              if(u1.Project_id == u.project_id) {
+
+
+                 found = 1;
+              }
+
+            })
+            
+            console.log(u.project_id,found)
+            if(found == 0) {
+
+
+            
+            return (
             <tr>
               <td>{u.project_id}</td>
               <td>{u.name}</td>
@@ -163,7 +205,7 @@ const ProjectsOfUser: React.FunctionComponent<IAppProps> = (props) => {
                 </button>{" "}
               </td>
             </tr>
-          ))}
+          )}})}
         </tbody>
       </table>
     )}

@@ -31,7 +31,7 @@ const AssignedCoursesScreen = (props: Props) => {
         
     },[])
   return (
-    <div>
+    <div style = {{marginTop : '160px'}}>
     <>
     <h1 className="text-white bg-dark text-center mb-3"> Assigned Projects</h1>
   {loadingUserCourse ? (

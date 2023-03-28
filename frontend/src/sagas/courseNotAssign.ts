@@ -38,7 +38,7 @@ const func  = async () => {
             },
         }
     
-        const { data } = await axios.get(`${BASE_URL}/project/inactive`)
+        const { data } = await axios.get(`${BASE_URL}/project/all`)
 
         return data
 

@@ -34,7 +34,9 @@ const addProject = async (name : string,assignee_id: string) => {
             },
         }
 
-        const status : string = "Inactive"
+        console.log("aniket jbsjbd")
+
+        const status : string = "Active"
         const { data } = await axios.post(`${BASE_URL}/project/add`,{name,assignee_id,status},config)
 
         return data
@@ -92,7 +94,7 @@ function* workaddProjectSaga(action: Action) : any{
 }
  function* watchaddProjectSaga() {
 
-    console.log("watch add user saga")
+    console.log("watch add project saga")
     yield takeEvery(courseActionType.ADD_PROJECT_REQUEST,workaddProjectSaga);
 
     //yield call(handleLoginAction);
