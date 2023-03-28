@@ -1,7 +1,7 @@
 
 
-import React, { useEffect, useState } from 'react'
-import { Button, Table } from 'react-bootstrap'
+import React, { useContext, useEffect, useState } from 'react'
+import { Button, Container, Table } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import NavBarComponent from '../component/NavBarComponent'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -11,10 +11,15 @@ import { useAppSelector } from '../Types'
 
 import { useDispatch } from 'react-redux'
 import { userinfoRequest, UsersListRequestAction, userUpdateAdminActionRequest, userDeleteRequestAction } from '../state/action-creators'
-
+``
 import { useNavigate, useParams } from 'react-router-dom'
 
 import Loading from '../component/Loading'
+
+import { useGlobalContext } from '../contexts/globalContext'
+
+//import Context from 'react-redux/es/components/Context'
+
 
 
 
@@ -54,7 +59,7 @@ const AssignHandler = (userid : string,navigate : any) => {
   navigate(`/users/${userid}`)
 }
 
-type Props = {}
+// type Props = {}
 
 type usercheck = {
   user_id : string,
@@ -88,10 +93,27 @@ type usersTypesInfo = {
 }
 
 
+type Props = {
 
+  username : string,
+  showUsers : any,
+  addUser : any,
+  addProject : any,
+  AssignProject : any,
+  LogoutHandler : any,
+  role : string,
+  userid : any
+}
 
-function ListAllUsersScreen({}: Props) {
+const ListAllUsersScreen : any = (props : Props)  => {
+
   
+  console.log(props,"listalluserscreen")
+
+ 
+  const {username,showUsers,addUser,addProject,AssignProject,LogoutHandler,role} = useGlobalContext()
+  
+  console.log(showUsers,"hey aniket wgeuudbq ")
   const navigate = useNavigate()
 
   const ids = useParams()
@@ -100,7 +122,7 @@ function ListAllUsersScreen({}: Props) {
 
   //console.log(ids,"avvua",x)
 
-  const showProjectofUserHandler : any = (id : any) => {
+  const showProjectofUserHandler : any = (id : any,props : Props) => {
 
 
     navigate(`/user/project/${id}`)
@@ -276,19 +298,19 @@ const link1 = <div>
 const keywords : any = ids.keyword
 
 console.log(typeof(keywords),"asdfghj")
-    
-const link2 =  usersLoading && typeof(keywords) != undefined  ? (<Loading/>) : users.map((u) => {
 
-  if(typeof(keywords) === "undefined")
-  {
-    return
-  }
-  var found = 0;
 
-  const x = JSON.parse(keywords)
+let found = 0
+
+let link2 =  usersLoading && props.userid != 0  ? (<Loading/>) : users.map((u) => {
+
+  
+
+  const x = props.userid
 
   if(u.user_id == x)
   {
+    found = 1
     return (
       <table className="table table-info table-striped m-5" >
       <thead>
@@ -347,11 +369,16 @@ const link2 =  usersLoading && typeof(keywords) != undefined  ? (<Loading/>) : u
 } 
 )
 
+if(found == 0)
+{
+  link2 = <Container style = {{ padding : '20px' , textAlign : 'center'}}><h1>User not found</h1></Container>
+}
+
 
 return (
   <>
-  <NavBarComponent style = {{marginBotom : '10px'}}/>,
-   {typeof(keywords) !== "undefined" ? link2 : link1 }
+  
+   {props.userid != 0 ? link2 : link1 }
   </>
 )
 }

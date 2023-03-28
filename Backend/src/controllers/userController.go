@@ -8,6 +8,9 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
+	"time"
+
+	"github.com/dgrijalva/jwt-go"
 
 	"github.com/gin-gonic/gin"
 )
@@ -44,12 +47,33 @@ func Login(c *gin.Context) {
 		return
 	}
 
+	secret := []byte("mysecretkey")
+
+    // Create a new token with claims
+    token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+        "sub": "1234567890",
+        "name": u.Username,
+		"userid" : u.User_id,
+        "iat": time.Now().Unix(),
+        "exp": time.Now().Add(time.Hour * 24).Unix(),
+    })
+
+    // Sign the token with the secret key
+    tokenString, err := token.SignedString(secret)
+    if err != nil {
+        fmt.Println("Error signing token:", err)
+        return
+    }
+
+    fmt.Println("Token:", tokenString)
+
 	fmt.Println(u, "heyy")
 	if u.User_id > 0 {
 		c.JSON(http.StatusOK, gin.H{
 			"message":  "Welcome user!",
 			"userId":   u.User_id,
 			"userName": u.Username,
+			"token" : tokenString,
 		})
 
 	}
