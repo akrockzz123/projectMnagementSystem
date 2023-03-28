@@ -25,6 +25,14 @@ type cvb = {
 
 type courseState = {
 
+    get_projects_loading : boolean,
+
+    get_projects_success: boolean,
+
+    get_projects_error : boolean,
+
+    get_projects : [],
+
     loadingAddCourse : boolean,
 
     errorAddCourse : boolean,
@@ -71,6 +79,14 @@ type courseState = {
 
 
 const initialState : courseState = {
+
+    get_projects_loading : true,
+
+    get_projects_success:false,
+
+    get_projects_error : false,
+
+    get_projects : [],
 
     loadingAddCourse : true,
 
@@ -295,6 +311,34 @@ export const coursesReducer  = (_state: courseState = initialState, action : Act
                 course_not_assign_error : true
             }
         break;
+
+        case courseActionType.GET_PROJECT_REQUEST :
+            return {
+                ..._state,
+                get_projects_loading: true,
+
+            }
+        break;
+
+        case courseActionType.GET_PROJECT_SUCCESS : {
+            return {
+                ..._state,
+                get_projects_loading: false,
+                get_projects_success: true,
+                get_projects : action.payload
+            }
+        }
+        
+        case courseActionType.GET_PROJECT_FAIL : {
+
+            return {
+                ..._state,
+                get_projects_loading: false,
+                get_projects_success : false,
+                get_projects_error: true
+            }
+        }
+
 
         default : 
         return initialState

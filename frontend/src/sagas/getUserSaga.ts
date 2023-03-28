@@ -17,6 +17,7 @@ import { userinfoSuccess, userLoginRequestAction } from '../state/action-creator
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
+import { BASE_URL } from '../constant/environment';
 
 
 const fetchUserinfo  = async (id : string) => {
@@ -24,7 +25,7 @@ const fetchUserinfo  = async (id : string) => {
     try {
         
 
-        const { data } = await axios.get(`/user/${id}`)
+        const { data } = await axios.get(`${BASE_URL}/user/${id}`)
 
         return data
 

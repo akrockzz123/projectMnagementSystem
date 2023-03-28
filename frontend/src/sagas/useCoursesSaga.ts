@@ -21,6 +21,7 @@ import { userLoginRequestAction } from '../state/action-creators';
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
+import { BASE_URL } from '../constant/environment';
 
 
 const fetchCourses  = async (id : string) => {
@@ -32,7 +33,7 @@ const fetchCourses  = async (id : string) => {
        
         
     
-        const { data } = await axios.get(`/project/userp/${id}`)
+        const { data } = await axios.get(`${BASE_URL}/user_project/userp/${id}`)
 
         return data
 

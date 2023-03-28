@@ -12,12 +12,14 @@ import { courseActionType, userActionType } from '../state/action-types';
 import axios from 'axios';
 import { Action } from '../state/action';
 
-import { courseAddRequestFail, courseAddRequestSuccess, userLoginRequestAction, userSignupFailAction } from '../state/action-creators';
 
+import { courseAddRequestFail, courseAddRequestSuccess, userLoginRequestAction, userSignupFailAction } from '../state/action-creators';
+ 
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
 import { useDispatch } from 'react-redux';
+import { BASE_URL } from '../constant/environment';
 
 
 const addProject = async (name : string,assignee_id: string) => {
@@ -33,7 +35,7 @@ const addProject = async (name : string,assignee_id: string) => {
         }
 
         const status : string = "Inactive"
-        const { data } = await axios.post('/project/add',{name,assignee_id,status},config)
+        const { data } = await axios.post(`${BASE_URL}/project/add`,{name,assignee_id,status},config)
 
         return data
 

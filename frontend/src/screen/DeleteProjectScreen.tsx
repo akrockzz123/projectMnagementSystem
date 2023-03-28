@@ -2,167 +2,196 @@
 
 
 
-import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { AssignProjectRequest, courseAddRequestAction, UsersListRequestAction } from '../state/action-creators';
-//import { courseAddReducer } from '../state/reducers/courseAddReducer';
-import { useAppSelector } from '../Types';
 
-import { alertset } from '../state/action-creators';
-import { Alertshow } from '../component/AlertShow';
-import { userActionType } from '../state/action-types';
+import React, { useContext, useEffect, useState } from 'react'
+import { Button, Container, Table } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+import NavBarComponent from '../component/NavBarComponent'
+import { LinkContainer } from 'react-router-bootstrap'
+import Message from '../component/Message'
 
-interface IAppProps {
+import { useAppSelector } from '../Types'
+
+import { useDispatch } from 'react-redux'
+import { userinfoRequest, UsersListRequestAction, userUpdateAdminActionRequest, userDeleteRequestAction, getAllProjectsRequest, courseDeleteRequestAction } from '../state/action-creators'
+
+import { useNavigate, useParams } from 'react-router-dom'
+
+import Loading from '../component/Loading'
+
+import { useGlobalContext } from '../contexts/globalContext'
+
+//import Context from 'react-redux/es/components/Context'
+
+
+
+
+
+
+
+
+type Props = {
+
+ 
 }
 
-// Name        string `json:"name"`
-// 	Assignee_id string `json:"assignee_id"`
-// 	Status      string `json:"status"`
+const ListAllProjectScreen : any = (props : Props)  => {
 
-const AddProjectScreen: React.FunctionComponent<IAppProps> = (props) => {
+  
+  console.log(props,"listalluserscreen")
 
-    const [name,setName] = React.useState('')
+ 
+//   const {username,showUsers,addUser,addProject,AssignProject,LogoutHandler,role} = useGlobalContext()
+  
+//  console.log(showUsers,"hey aniket wgeuudbq ")
+  const navigate = useNavigate()
 
-    const [assigneeid,setAssigneeid] = useState('')
+  const ids = useParams()
 
-    const [dis,setDis] = useState(false)
+  
 
-    const dispatch = useDispatch()
+  //console.log(ids,"avvua",x)
 
-    const refInput : any = useRef(" ")
+  const showProjectofUserHandler : any = (id : any,props : Props) => {
 
-    //const alertData   = useAppSelector(state => state.user)
 
-//     usersList(pin):
-// usersLoading(pin):true
-// successUsers(pin):false
-// errorusers(pin):false
-    
-   const {users,usersLoading,successUsers,errorUsers} = useAppSelector((state : any) => {
-    
-    return state.userReducer
+    navigate(`/user/project/${id}`)
+  }
+
+  if(localStorage.getItem('userdata') != undefined)
+  {
+    const usersall : any = localStorage.getItem('userdata') 
+
+  
+   const val  = JSON.parse(usersall)
+
+   const userids = val.userId
+  }
+
+  // const useridget : any = val.userId
+     //const navigate : any = useNavigate()
+
+  if(localStorage.getItem('userdata') == 'undefined')
+  {
+    navigate('/user/login')
+  }
+  /*users : [],
+
+  usersLoading : true,
+
+  successUsers : false,
+
+  errorusers : <false></false>
+  */
+
+  const dispatch = useDispatch()
+  const {get_projects_loading,get_projects_success,get_projects_error,get_projects} = useAppSelector(state => {
+
+    return state.courseReducer
   })
 
 
-    type addProjectState = {
-
-        loadingAddCourse : boolean,
-    
-        errorAddCourse : boolean,
-    
-        successAddCourse : boolean
-    }
-
-    const addProject : addProjectState = useAppSelector((state: any) => {
-      return state.courseReducer
-    })
-
-    const {loadingAddCourse, errorAddCourse,successAddCourse} = addProject
-
-
-    useEffect(() => {
-
-      dispatch(UsersListRequestAction())
-    },[])
-    
-    const nameFunc = (name : string) => {
-
-        setName(name)
-
-    }
-
-    const assigneeFunc : any = (assign : string) => {
-
-        console.log(refInput,"aniket")
-
-        refInput.current.value = ""
-        setDis(true)
-        setAssigneeid(assign)
-    }
-
-    const notassigneeFunc : any = () => {
-
-      //setDis(false)
-    }
-
-    const deselectAssigneeId : any = () => {
-
-      setDis(false)
-    }
-    const submitHandlerFunc : any = () => {
-
-       console.log(name,assigneeid)
-        dispatch(courseAddRequestAction(name,assigneeid))
-
-    }
-
-    const selectAssigneeId = () => {
-
-      setDis(true)
-    }
-
-    const valueofAssigneeId = (e : any) => {
-
-      console.log(e.target.value,"aniket kumar it is",e.target.innerText)
-
-      refInput.current.value = e.target.innerText
-    }
-
-    // if(successAddCourse)
-    // {
-    //   dispatch(alertset("successfully addedd","success"))
-    // }
-
-    const arr = {"msgtype" : "success", "msg" : "successfully added course"}
-
-    const arr2 = {"msgtype" : "danger", "msg" : "course not added"}
-
-    console.log(users,"heyyy")
-  return (
-    <>
-    {successAddCourse && <Alertshow arrs = {arr}/>},
-    {errorAddCourse && <Alertshow arrs = {arr2} />},
-    <Form style = {{marginTop : '100px'}}>
-    
-    <Form.Group className="mb-3" controlId="AssigneeId">
-      <Form.Label>Assignee id</Form.Label>
-      <Form.Control type="email" placeholder="Enter assigneediD" ref = {refInput} onMouseEnter  = {assigneeFunc} onMouseLeave = {notassigneeFunc} disabled = {dis} />
-      
-      
-      <Form.Text className="text-muted">
-       
-      </Form.Text>
-    </Form.Group>
-
-    <div className={`banner ${dis ? "active" : ""}`} >
-        <ul className="list-group" onMouseEnter={selectAssigneeId} onMouseLeave = {deselectAssigneeId} onClick = {(e) => valueofAssigneeId(e)}>
-
-        {successUsers && users.map((u : any) => 
-         
-            <li className="list-group-item" key = {u.user_id}> {u.user_id} </li>
-          
-        
-        )}
-      </ul>
-    </div>
-
-   
-
-    <Button onClick = {submitHandlerFunc}>Submit</Button>
-    
-    
-    <br/>
-    <br/>
-    {/* {errorAddCourse ? <div style = {{color : 'red'}}>Please enter course and assignee id correctly</div> : <div></div>}
-
-    {successAddCourse ? <div style={{color : 'green'}}>Success</div> : <div></div>} */}
-
   
-  </Form>
-  </>
-  );
-};
+  
 
-export default AddProjectScreen;
+  useEffect(() => {
+
+    //dispatch(userinfoRequest(userids))
+    dispatch(getAllProjectsRequest())
+    //dispatch(userinfoRequest(userids))
+    //dispatch(UsersListRequestAction())
+  },[])
+
+  useEffect(() => {
+
+    if(!localStorage.getItem('userdata') || !localStorage.getItem('role'))
+    {
+      if(localStorage.getItem('userdata'))
+      {
+        localStorage.removeItem('userdata')
+      }
+
+      if(localStorage.getItem('role'))
+      {
+        localStorage.removeItem('role')
+      }
+
+
+      const value = localStorage.getItem('role')
+
+      if(value != 'Admin')
+      {
+        navigate('/navigate')
+      }
+
+     
+    }
+  },[])
+  
+
+
+const deleteCourseHandler : any =(id : string, e : React.MouseEvent<HTMLButtonElement>) => {
+  e.preventDefault()
+  console.log("delete course",id)
+  dispatch(courseDeleteRequestAction(id))
+
+  dispatch(getAllProjectsRequest())
+}
+
+
+
+
+
+
+const link1 = <div>
+<br />
+
+<h1 className="text-white bg-dark text-center mb-3">Show All Users</h1>
+{get_projects_loading ? (
+  <Loading />
+) : get_projects_success ? (
+  <>
+    <table className="table table-info table-striped m-5">
+      <thead>
+        <tr>
+        <th scope="col">Project Id</th>
+        <th scope="col">Project name</th>
+        <th scope="col">Project status</th>
+        <th scope="col">Delete Project</th>
+      </tr>
+      </thead>
+      <tbody>
+        {get_projects.map((u: any) => (
+          <tr key={u.project_id}>
+            <td>{u.project_id}</td>
+            <td>{u.name}</td>
+            <td>{u.status}</td>
+            
+            <td>
+              <button className="btn btn-danger"
+                onClick={(e) => deleteCourseHandler(u.project_id,e)}
+              >
+                Delete
+              </button>{" "}
+            </td>
+            
+            
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </>
+) : (
+  <h1>Error</h1>
+)}
+</div>
+
+            return (
+                <>
+                  {link1}
+                </>
+            );
+}
+
+export default ListAllProjectScreen
+

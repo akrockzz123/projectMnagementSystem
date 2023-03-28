@@ -23,6 +23,7 @@ import { userLoginRequestAction, userSignupFailAction } from '../state/action-cr
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
+import { BASE_URL } from '../constant/environment';
 
 
 const addUser  = async (username : string,email: string,password: string,role : string) => {
@@ -39,7 +40,7 @@ const addUser  = async (username : string,email: string,password: string,role : 
 
         const status : string = "Active"
 
-        const { data } = await axios.post('/user/add',{username,email,role,status,password},config)
+        const { data } = await axios.post(`${BASE_URL}/user/add`,{username,email,role,status,password},config)
 
         return data
 

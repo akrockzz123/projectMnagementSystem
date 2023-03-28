@@ -12,7 +12,7 @@ import AddUserScreen from './AddUserScreen';
 import { userActionType } from '../state/action-types';
 import UserCoursAssignedScreen from './UserAssignedCoursesScreen';
 import NavBarComponent from '../component/NavBarComponent';
-
+import ListAllProjectScreen from './DeleteProjectScreen';
 import { createContext } from 'react';
 
 
@@ -95,6 +95,12 @@ const NavigateScreen: React.FunctionComponent<IAppProps> = (props) => {
         setVal(3)
     }
 
+    const showProject = () => {
+
+        console.log("show project","5")
+        setVal(5)
+    }
+
     useEffect(() => {
 
 
@@ -152,7 +158,7 @@ const NavigateScreen: React.FunctionComponent<IAppProps> = (props) => {
        
 
       <Container>
-       <NavBarComponent username = {usersData.userName} addUser = {addUser} addProject = {addProject} AssignProject = {AssignProject} LogoutHandler = {LogoutHandler} role = {role} showusers = {showusers} style = {{position : 'fixed'}} func = {func} />
+       <NavBarComponent username = {usersData.userName} addUser = {addUser} addProject = {addProject} AssignProject = {AssignProject} LogoutHandler = {LogoutHandler} role = {role} showusers = {showusers} style = {{position : 'fixed'}} func = {func} showProject = {showProject}/>
       </Container>
 
    
@@ -163,6 +169,7 @@ const NavigateScreen: React.FunctionComponent<IAppProps> = (props) => {
          {val === 2 && <AddUserScreen/> }
          {val === 3 && <AddProjectScreen/>}
          {val === 4 && <UserCoursAssignedScreen/>}
+         {val === 5 && <ListAllProjectScreen/>}
         
       </div>
         </div>

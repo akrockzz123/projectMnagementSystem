@@ -20,6 +20,7 @@ import { Action } from '../state/action';
 import { userDeleteRequestAction, userDeleteSuccessAction,userDeleteFailAction } from '../state/action-creators';
 import { createTry } from 'typescript';
 import { config } from 'process';
+import { BASE_URL } from '../constant/environment';
 
 
 const deleteUser  = async (id : string) => {
@@ -33,7 +34,7 @@ const deleteUser  = async (id : string) => {
             },
         }
     
-        const { data } = await axios.post(`/user/remove/${id}`,config)
+        const { data } = await axios.post(`${BASE_URL}/user/remove/${id}`,config)
 
         return data
 

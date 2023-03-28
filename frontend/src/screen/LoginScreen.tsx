@@ -73,9 +73,10 @@ function LoginScreen({ }: Props) {
     setIsAdmin(!isAdmin)
   }
 
-  const loginHandler = () => {
+  const loginHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
-    dispatch(userLoginRequestAction(username, password))
+    e.preventDefault()
+    dispatch(userLoginRequestAction(email, password))
   }
 
   if (successLogin) {
@@ -159,7 +160,7 @@ function LoginScreen({ }: Props) {
         <button 
         type="submit" 
         className="btn btn-success block mt-2"
-        onClick={loginHandler}
+        onClick={(e) => loginHandler(e)}
         >
           Login
         </button>

@@ -17,6 +17,7 @@ import { userLoginRequestAction, UsersListSuccessAction } from '../state/action-
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
+import { BASE_URL } from '../constant/environment';
 
 
 const fetchUserList  = async () => {
@@ -31,7 +32,7 @@ const fetchUserList  = async () => {
             },
         }
     
-        const { data } = await axios.get('/user/all')
+        const { data } = await axios.get(`${BASE_URL}/user/all`)
 
         return data
 

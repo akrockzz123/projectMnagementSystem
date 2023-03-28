@@ -23,6 +23,7 @@ import { userLoginRequestAction, userSignupFailAction, userUpdateAdminActionFail
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
+import { BASE_URL } from '../constant/environment';
 
 
 const addUser  = async (id : string) => {
@@ -35,7 +36,7 @@ const addUser  = async (id : string) => {
             },
         }
     
-        const { data } = await axios.post(`/user/update/${id}`,config)
+        const { data } = await axios.post(`${BASE_URL}/user/update/${id}`,config)
 
         return data
 

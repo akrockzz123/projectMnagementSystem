@@ -107,7 +107,7 @@ const AddUserScreen: React.FunctionComponent<IAppProps> = (props) => {
       
       let regex = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
 
-      if(email.match(regex) && (password.length >= 6) && username !== null)
+      if(email.match(regex)  && username !== null)
       {
           const str = isAdmin ? "Admin" : "User";
 

@@ -307,6 +307,26 @@ interface userSignupReset {
   payload?: any
 }
 
+interface getProjectsRequest {
+
+  type : courseActionType.GET_PROJECT_REQUEST,
+
+  payload?: any
+}
+
+interface getProjectsSuccess {
+
+  type : courseActionType.GET_PROJECT_SUCCESS,
+
+  payload?: any
+}
+
+interface getProjectsFail {
+  type : courseActionType.GET_PROJECT_FAIL,
+  payload?: any
+}
+
+
 export type Action =
   | userLoginRequest
   | userLoginSuccess
@@ -356,4 +376,7 @@ export type Action =
   | getProjectUserRequest2
   | getProjectUserSuccess2
   | getProjectUserFail2
-  | userSignupReset;
+  | userSignupReset
+  | getProjectsRequest
+  | getProjectsSuccess
+  | getProjectsFail;

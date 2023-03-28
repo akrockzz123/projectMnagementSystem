@@ -21,6 +21,7 @@ import { AssignProjectRequestFail, AssignProjectRequestSuccess, userLoginRequest
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
+import { BASE_URL } from '../constant/environment';
 
 
 const AssignCourseToUser  = async (courseid: string,userAssignId: string) => {
@@ -41,7 +42,7 @@ const AssignCourseToUser  = async (courseid: string,userAssignId: string) => {
         console.log(user_id,project_id,"jbvsj",typeof(courseid))
 
         console.log("called in work before api")
-        const data  = await axios.post('/assign/project',{user_id,project_id},config)
+        const data  = await axios.post(`${BASE_URL}/user_project/project`,{user_id,project_id},config)
 
         console.log("called in work after api call ")
 

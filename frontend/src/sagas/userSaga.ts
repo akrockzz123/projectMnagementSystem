@@ -13,6 +13,7 @@ import { userLoginRequestAction } from '../state/action-creators';
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
+import { BASE_URL } from '../constant/environment';
 
 
 const fetchUser  = async (username: string,password: string) => {
@@ -25,7 +26,7 @@ const fetchUser  = async (username: string,password: string) => {
             },
         }
 
-            const { data } = await axios.post('/user/login',{username,password},config)
+            const { data } = await axios.post(`${BASE_URL}/user/login`,{username,password},config)
 
         return data
 

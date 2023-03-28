@@ -20,6 +20,7 @@ import { userinfoSuccess, userLoginRequestAction } from '../state/action-creator
 import { userLoginFailAction } from '../state/action-creators';
 
 import { userLoginSuccessAction } from '../state/action-creators';
+import { BASE_URL } from '../constant/environment';
 
 
 const fetchCourse  = async () => {
@@ -27,7 +28,7 @@ const fetchCourse  = async () => {
     try {
 
         console.log("hey 1234")
-        const { data }  = await axios.get('/project/all')
+        const { data }  = await axios.get(`${BASE_URL}/project/all`)
 
         return data
 

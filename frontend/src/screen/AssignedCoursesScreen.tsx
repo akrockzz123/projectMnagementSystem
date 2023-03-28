@@ -80,42 +80,42 @@ export default AssignedCoursesScreen
 
 
 
-import { takeEvery, call,put} from  'redux-saga/effects';
+// import { takeEvery, call,put} from  'redux-saga/effects';
 
-import { courseActionType, userActionType } from '../state/action-types';
-
-
-
-import axios from 'axios';
-import { Action } from '../state/action';
-
-import { userDeleteRequestAction, userDeleteSuccessAction,userDeleteFailAction } from '../state/action-creators';
-import { createTry } from 'typescript';
-import { config } from 'process';
+// import { courseActionType, userActionType } from '../state/action-types';
 
 
-const deleteCourse  = async (id : string) => {
+
+// import axios from 'axios';
+// import { Action } from '../state/action';
+
+// import { userDeleteRequestAction, userDeleteSuccessAction,userDeleteFailAction } from '../state/action-creators';
+// import { createTry } from 'typescript';
+// import { config } from 'process';
 
 
-    try {
+// const deleteCourse  = async (id : string) => {
+
+
+//     try {
         
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             }
+//         }
 
-        const ids = JSON.parse(id)
-        const { data } = await axios.post(`/project/remove/${ids}`,config)
+//         const ids = JSON.parse(id)
+//         const { data } = await axios.post(`/project/remove/${ids}`,config)
 
-        //return data
+//         //return data
 
-    } catch (err) {
+//     } catch (err) {
         
-        throw err
-    }
+//         throw err
+//     }
     
-}
+// }
 
 
 

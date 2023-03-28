@@ -12,6 +12,7 @@ type Props = {
     AssignProject : any,
     LogoutHandler : any,
     role : string,
+    showProject : any,
 
     func : any
 
@@ -35,6 +36,7 @@ const NavBarComponent : any = (props: Props) => {
             <SearchBox func = {props.func}/>
             <Nav.Link><button className="btn btn-light" onClick = {props.AssignProject}>Assigned Project</button></Nav.Link>
             <Nav.Link><button className="btn btn-danger" onClick = {props.LogoutHandler}>Logout</button></Nav.Link>
+            {props.role === 'Admin' && <Nav.Link><button className="btn btn-light" onClick = {props.showProject}>Delete Project</button></Nav.Link> }
           </Nav>
         
       </nav>
